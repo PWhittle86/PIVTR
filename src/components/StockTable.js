@@ -2,16 +2,18 @@ import React from 'react';
 
 class StockTable extends React.Component {
   render() {
-    var stockNodes = this.props.stocks.map(function(stock) {
-      return (
-        <p>{stock["2018-08-16"]["1. open"]}</p>
-      );
-    });
-
+    const stockstuff = this.props.stocks;
+    console.log({stockstuff});
     return (
-      <div className="stockTable">
-        {stockNodes}
-      </div>
+      <table>
+        <tbody>
+          <tr>
+            
+          </tr>
+        </tbody>
+
+      </table>
+
     )
   }
 }

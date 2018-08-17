@@ -10,7 +10,7 @@ app.get('/', function(req, res){
   .then(response => response.json())
   .then(response => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(response.results);
+    res.send(response['Time Series (Daily)']);
   });
 });
 
