@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import GameContainer from './containers/GameContainer';
-import './App.css';
+import StockContainer from './containers/StockContainer.js'
 
 class App extends Component {
   render() {
     return (
-      <GameContainer/>
-        );
+      <div>
+          <StockContainer />
+      </div>
+    );
   }
 }
 
