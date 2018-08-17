@@ -33,9 +33,7 @@ class StockContainer extends React.Component {
             <div class="info-chart">
             <InfoChart/>
             </div>
-
-
-            </div>
+          </div>
         </React.Fragment>
     )
   }
