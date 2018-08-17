@@ -20,6 +20,12 @@ th {
   display: flex;
 }
 
+#stock-search {
+  margin-left: 20px;
+  background-color: #ddd;
+  height: 200px;
+}
+
 #stock-table {
   background-color: #ddd;
 }
