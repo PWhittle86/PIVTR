@@ -21,16 +21,20 @@ class StockContainer extends React.Component {
   render(){
     return(
         <React.Fragment>
-          <div id="main-elements">
-          <div id="stock-table">
+          <div class="main-elements">
+            <div class="top-elements">
+          <div class="stock-table">
             <StockTable/>
             </div>
-            <div id="info-chart">
-            <InfoChart/>
-            </div>
-            <div id="found-stock">
+            <div class="found-stock">
             <SearchedStock/>
             </div>
+            </div>
+            <div class="info-chart">
+            <InfoChart/>
+            </div>
+
+
             </div>
         </React.Fragment>
     )

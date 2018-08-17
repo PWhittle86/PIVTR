@@ -1,20 +1,40 @@
-#stock-table {
+.main-elements {
 
-  border-style: solid;
-  width: 25%;
-
-}
-
-#info-chart {
-
-  border-style: solid;
-  width: 25%;
+  display: flex;
+  padding-left: 30px;
+  padding-right: 30px;
+  flex-wrap: wrap;
 
 }
 
-#found-stock {
+.main-elements .top-elements {
+
+flex: 1;
+flex-direction: row;
+
+}
+
+
+.top-elements .stock-table {
 
   border-style: solid;
-  width: 25%;
+  /* width: 66%; */
+  flex: 1;
+
+}
+
+.found-stock {
+
+  border-style: solid;
+  /* width: 33%; */
+
+}
+
+.info-chart {
+
+  border-style: solid;
+  width: 80%;
+  flex: 1;
+
 
 }
