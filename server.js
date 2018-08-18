@@ -9,7 +9,7 @@ app.use(cors());
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
 
-MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, function (error, client) {
+MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, function(error, client){
 
   const db = client.db("stockdb");
   console.log("Connected to db");
@@ -38,6 +38,8 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
 
 //DATABASE CALLS
 
+  // post a new line of stock in the user's portfolio
+
   app.post('/stocks', function(req, res) {
       console.log("stocks called");
       const stocksCollection = db.collection('stocks');
@@ -54,10 +56,10 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
     });
   });
 
-  // get stocks
+  // get all stocks
   app.get('/stocks', function(req, res) {
-    const stockCollection = db.collection('stocks');
-    stockCollection.find().toArray(function(error, allStocks) {
+    const stocksCollection = db.collection('stocks');
+    stocksCollection.find().toArray(function(error, allStocks) {
       if(error){
         console.log(error);
         res.status(500);
@@ -66,6 +68,26 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
       res.json(allStocks);
     });
   });
+
+  //update specified stock
+  app.put('/stocks/:id', function(req, res){
+    const stocksCollection = db.collection('stocks');
+    const stockID = ObjectID(req.params.id);
+    const filterObject = {_id: stockID};
+    const updatedData = req.body;
+
+    stocksCollection.update(filterObject, updatedData, function(err, result){
+      if(err){
+        console.log(err);
+        res.status(500);
+        res.send;
+      }
+      res.json(result);
+      res.send;
+    })
+
+  })
+
 
   app.listen(3001, function(){
     console.log("App running");
