@@ -84,10 +84,23 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
       }
       res.json(result);
       res.send;
+    });
+  });
+
+  //delete all stocks
+  app.delete('/stocks', function(req, res){
+    const filterObject = {};
+    const stocksCollection = db.collection('stocks');
+
+    stocksCollection.deleteMany(filterObject, function(err, result){
+      if(err){
+        res.status(500);
+        res.send();
+      }
+      res.status(204);
+      res.send();
     })
-
   })
-
 
   app.listen(3001, function(){
     console.log("App running");
