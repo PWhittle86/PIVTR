@@ -12,7 +12,7 @@ class StockSearch extends React.Component {
     // this.setState({searchText: event.target.value});
     const searchText = event.target.value;
     if(searchText.length >= 2 && searchText.length <= 5) {
-      fetch(`http://localhost:3000/quote?symbol=${searchText}`)
+      fetch(`https://api.iextrading.com/1.0/stock/${searchText}/quote`)
       .then(response => response.json())
       .then(response => this.setState({result: response}));
     }

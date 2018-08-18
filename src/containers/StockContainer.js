@@ -38,7 +38,7 @@ class StockContainer extends React.Component {
 
         <React.Fragment>
           <div className="main-elements">
-            <div class="top-elements">
+            <div className="top-elements">
           <div className="portfolio-table">
             <PortfolioTable portfolio={this.state.portfolio}/>
             {/* <StockTable/> <- is this PortfolioTable? */}
