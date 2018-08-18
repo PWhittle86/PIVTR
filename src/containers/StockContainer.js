@@ -65,7 +65,6 @@ class StockContainer extends React.Component {
           </section> */}
         </React.Fragment>
 
-
     )
   }
 }
