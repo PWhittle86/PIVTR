@@ -85,6 +85,7 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
         res.status(500);
         res.send;
       }
+      res.status(200);
       res.json(result);
       res.send;
     });
