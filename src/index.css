@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #9BBDCC;
+  background-color: #eee;
 }
 
 th {
@@ -10,22 +10,21 @@ th {
 }
 
 .ellipsis {
-    max-width: 260px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  max-width: 260px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 #stock-table-search {
   display: flex;
 }
 
-#stock-search {
-  margin-left: 20px;
-  background-color: #ddd;
-  height: 200px;
-}
+/* GENERIC */
 
-#stock-table {
-  background-color: #ddd;
+.box{
+  padding: 20px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  background-color: #fff;
+  border-radius: 6px;
 }

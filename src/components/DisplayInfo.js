@@ -20,7 +20,9 @@ const DisplayInfo = (props) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(stock)
-    }).then(response => response.json()).then(response => console.log(response));
+    })
+    .then(response => response.json())
+    .then(response => props.onStockSave(response));
   }
 
   return(

@@ -28,14 +28,14 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
   });
 
   app.get('/quote', function(req, res) {
-    const symbol = req.query.symbol;
-    fetch(`https://api.iextrading.com/1.0/stock/${symbol}/quote`)
-    .then(response => response.json())
-    .then(response => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(response);
+      const symbol = req.query.symbol;
+      fetch(`https://api.iextrading.com/1.0/stock/${symbol}/quote`)
+      .then(response => response.json())
+      .then(response => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(response);
+      }).catch(error => console.log('Stock not found:', error.message));
     });
-  });
 
 
   //DATABASE CALLS
@@ -45,7 +45,7 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
   app.post('/stocks', function(req, res) {
     const stocksCollection = db.collection('stocks');
     const stockToSave = req.body;
-    stocksCollection.save(stockToSave, function (error, result) {
+    stocksCollection.insertOne(stockToSave, function (error, result) { // .save() is deprecated
       if(error){
         console.log(error);
         res.status(500);

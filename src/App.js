@@ -9,7 +9,7 @@ class App extends Component {
 
       <React.Fragment>
 
-      <div id="mission-statement">
+      <div id="mission-statement" className="box">
 
         <p>At PIVTR we believe in one thing: optimising frictionless web-readiness. But what does that mean?</p>
         <p>It means we're a forward-thinking anti-conglomerate who work tirelessly to incubate cutting-edge paradigms and above all else: synergise backwards overflow.</p>
@@ -18,8 +18,8 @@ class App extends Component {
 
       </div>
 
-      <div>
-      <StockContainer />
+      <div className="main-elements">
+        <StockContainer />
       </div>
     </React.Fragment>
     )

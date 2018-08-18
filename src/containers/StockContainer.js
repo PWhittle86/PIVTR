@@ -32,27 +32,29 @@ class StockContainer extends React.Component {
     .then(portfolio => this.setState({portfolio: portfolio}));
   }
 
+  onStockSave = (stock) => {
+    //spread operator https://davidwalsh.name/spread-operator
+    // onStockSave sends up state change from <DisplayInfo/>
+    this.setState({ portfolio: [...this.state.portfolio, stock] })
+  }
+
   render(){
     return(
-
-        <React.Fragment>
-          <div className="main-elements">
-            <div className="top-elements">
-          <div className="portfolio-table">
-            <PortfolioTable portfolio={this.state.portfolio}/>
-            </div>
-            <div className="found-stock">
-              <StockSearch />
-            </div>
-            </div>
-            <div className="info-chart">
+      <React.Fragment>
+        <div className="top-elements">
+          <div className="portfolio-table box">
+              <PortfolioTable portfolio={this.state.portfolio}/>
+          </div>
+          <div className="found-stock box">
+              <StockSearch onStockSave={this.onStockSave} />
+          </div>
+        </div>
+        <div className="info-chart box">
             <InfoChart/>
             {/* <StockTable stocks={this.state.stocks}/> */}
             {/* <-keep this, might need later  */}
-            </div>
-          </div>
-        </React.Fragment>
-
+        </div>
+      </React.Fragment>
     )
   }
 }
