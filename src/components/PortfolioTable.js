@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class StockTable extends React.Component {
+class PortfolioTable extends React.Component {
   render() {
 
-    const stockRow = this.props.stocks.map((stock, index) => {
+    const stockRow = this.props.portfolio.map((stock, index) => {
       return (
         <tr key={index}>
-          <td className="ellipsis">{stock.companyName}</td>
-          <td>{stock.symbol}</td>
-          <td>{stock.latestPrice}</td>
+          <td className="ellipsis">{stock.name}</td>
+          <td>{stock.epic}</td>
+          <td>{stock.price}</td>
           <td>{stock.change}</td>
           <td><button>buy</button></td>
           <td><button>sell</button></td>
@@ -24,7 +24,7 @@ class StockTable extends React.Component {
                 <th>Name</th>
                 <th>Epic</th>
                 <th>Price</th>
-                <th>change</th>
+                <th>Change</th>
               </tr>
             </thead>
             <tbody>
@@ -36,4 +36,4 @@ class StockTable extends React.Component {
   }
 }
 
-export default StockTable;
+export default PortfolioTable;
