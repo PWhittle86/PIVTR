@@ -5,6 +5,7 @@ class PortfolioTable extends React.Component {
 
     const stockRow = this.props.portfolio.map((stock, index) => {
       return (
+        <table>
         <tr key={index}>
           <td className="ellipsis">{stock.name}</td>
           <td>{stock.epic}</td>
@@ -13,6 +14,7 @@ class PortfolioTable extends React.Component {
           <td><button>buy</button></td>
           <td><button>sell</button></td>
         </tr>
+      </table>
       )
     });
 
