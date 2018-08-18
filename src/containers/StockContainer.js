@@ -40,17 +40,15 @@ class StockContainer extends React.Component {
             <div className="top-elements">
           <div className="portfolio-table">
             <PortfolioTable portfolio={this.state.portfolio}/>
-            {/* <StockTable/> <- is this PortfolioTable? */}
             </div>
             <div className="found-stock">
               <StockSearch />
-            {/* <SearchedStock/> */}
-            {/* <-is this StockSearch? */}
             </div>
             </div>
             <div className="info-chart">
             <InfoChart/>
             {/* <StockTable stocks={this.state.stocks}/> */}
+            {/* <-keep this, might need later  */}
             </div>
           </div>
         </React.Fragment>
