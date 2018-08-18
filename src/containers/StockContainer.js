@@ -36,7 +36,6 @@ class StockContainer extends React.Component {
             <PortfolioTable portfolio={this.state.portfolio}/>
             <StockSearch />
         </section>
-
         <StockTable stocks={this.state.stocks}/>
       </section>
     )
