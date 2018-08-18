@@ -4,9 +4,11 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 const parser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 
 app.use(cors());
 app.use(parser.json());
+app.use(express.static('client/build'));
 app.use(parser.urlencoded({extended: true}));
 
 MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, function(error, client){
@@ -106,8 +108,8 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
   //delete specified stock
   app.delete('/stocks/:id', function (req, res){
     const stocksCollection = db.collection('stocks');
-    const objectID = ObjectID(req.params.id);
-    const filterObject = {_id: objectID};
+    const stockID = ObjectID(req.params.id);
+    const filterObject = {_id: stockID};
 
     stocksCollection.deleteOne(filterObject, function(err, result){
       if(err){
