@@ -2,7 +2,6 @@ import React from 'react';
 import './StockContainer.css';
 import StockTable from '../components/StockTable.js'
 import InfoChart from '../components/InfoChart.js'
-import SearchedStock from '../components/SearchedStock.js'
 import PortfolioTable from '../components/PortfolioTable.js';
 import StockSearch from '../components/StockSearch.js';
 
@@ -41,28 +40,17 @@ class StockContainer extends React.Component {
             <div className="top-elements">
           <div className="portfolio-table">
             <PortfolioTable portfolio={this.state.portfolio}/>
-            {/* <StockTable/> <- is this PortfolioTable? */}
             </div>
             <div className="found-stock">
               <StockSearch />
-            {/* <SearchedStock/> */}
-            {/* <-is this StockSearch? */}
             </div>
             </div>
             <div className="info-chart">
-            {/* <InfoChart/> */}
-            {/* <-is this StockTable? */}
-            <StockTable stocks={this.state.stocks}/>
+            <InfoChart/>
+            {/* <StockTable stocks={this.state.stocks}/> */}
+            {/* <-keep this, might need later  */}
             </div>
           </div>
-          {/* <section>
-            <section className="stock-table-search">
-                <PortfolioTable portfolio={this.state.portfolio}/>
-                <StockSearch />
-            </section>
-
-            <StockTable stocks={this.state.stocks}/>
-          </section> */}
         </React.Fragment>
 
     )

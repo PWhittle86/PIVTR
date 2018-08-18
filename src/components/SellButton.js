@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default SellButton.js;
+export default SellButton;
