@@ -1,7 +1,12 @@
 import React from 'react';
-import StockTable from '../components/StockTable.js';
+
+import './StockContainer.css';
+import StockTable from '../components/StockTable.js'
+import InfoChart from '../components/InfoChart.js'
+import SearchedStock from '../components/SearchedStock.js'
 import PortfolioTable from '../components/PortfolioTable.js';
 import StockSearch from '../components/StockSearch.js';
+
 
 class StockContainer extends React.Component {
   constructor(props){
@@ -31,6 +36,23 @@ class StockContainer extends React.Component {
 
   render(){
     return(
+
+        <React.Fragment>
+          <div class="main-elements">
+            <div class="top-elements">
+          <div class="stock-table">
+            <StockTable/>
+            </div>
+            <div class="found-stock">
+            <SearchedStock/>
+            </div>
+            </div>
+            <div class="info-chart">
+            <InfoChart/>
+            </div>
+          </div>
+        </React.Fragment>
+
       <section>
         <section id="stock-table-search">
             <PortfolioTable portfolio={this.state.portfolio}/>

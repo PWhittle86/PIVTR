@@ -1,3 +1,12 @@
 import React from 'react';
 
-export default SearchedStock.js;
+const SearchedStock = (props) => {
+
+  return (
+    <div id="found-stock">
+      <p>Searched stock gon' go in this bit</p>
+    </div>
+  )
+}
+
+export default SearchedStock;
