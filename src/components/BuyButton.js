@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default BuyButton.js
+export default BuyButton;

@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default SearchBar.js;
+export default SearchBar;

@@ -2,7 +2,6 @@ import React from 'react';
 import './StockContainer.css';
 import StockTable from '../components/StockTable.js'
 import InfoChart from '../components/InfoChart.js'
-import SearchedStock from '../components/SearchedStock.js'
 import PortfolioTable from '../components/PortfolioTable.js';
 import StockSearch from '../components/StockSearch.js';
 
@@ -50,9 +49,8 @@ class StockContainer extends React.Component {
             </div>
             </div>
             <div className="info-chart">
-            {/* <InfoChart/> */}
-            {/* <-is this StockTable? */}
-            <StockTable stocks={this.state.stocks}/>
+            <InfoChart/>
+            {/* <StockTable stocks={this.state.stocks}/> */}
             </div>
           </div>
           {/* <section>
