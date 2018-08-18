@@ -53,14 +53,6 @@ class StockContainer extends React.Component {
             {/* <StockTable stocks={this.state.stocks}/> */}
             </div>
           </div>
-          {/* <section>
-            <section className="stock-table-search">
-                <PortfolioTable portfolio={this.state.portfolio}/>
-                <StockSearch />
-            </section>
-
-            <StockTable stocks={this.state.stocks}/>
-          </section> */}
         </React.Fragment>
 
 
