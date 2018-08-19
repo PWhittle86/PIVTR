@@ -37,7 +37,6 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
       }).catch(error => console.log('Stock not found:', error.message));
     });
 
-
   //DATABASE CALLS
 
   // post a new line of stock in the user's portfolio

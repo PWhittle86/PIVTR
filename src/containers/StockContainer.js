@@ -6,7 +6,6 @@ import PortfolioTable from '../components/PortfolioTable.js';
 import StockSearch from '../components/StockSearch.js';
 import Rotator from '../components/Rotator.js';
 
-
 class StockContainer extends React.Component {
   constructor(props){
     super(props);
@@ -72,7 +71,7 @@ class StockContainer extends React.Component {
         </div>
         <div className="top-elements">
           <div className="portfolio-table box">
-              <PortfolioTable portfolio={this.state.portfolio}/>
+              <PortfolioTable stocks={this.state.stocks} portfolio={this.state.portfolio}/>
           </div>
           <div className="found-stock box">
               <StockSearch onStockSave={this.onStockSave} />
