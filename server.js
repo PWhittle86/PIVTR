@@ -59,17 +59,40 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
 
   // get all stocks
   app.get('/stocks', function(req, res) {
-    console.log("stocks called");
     const stocksCollection = db.collection('stocks');
-    stocksCollection.find().toArray(function(error, allStocks) {
-      if(error){
+    stocksCollection.aggregate([
+      {
+        $group: {
+          _id: "$epic",
+          name: { $first: "$name" },
+          count: { $sum:1 },
+          avgChange: { $avg: "$change" },
+          avgPrice: { $avg: "$price" }
+        }
+      }
+    ]).get((error, data) => {
+      if(error) {
         console.log(error);
         res.status(500);
         res.send();
+      } else {
+        const convertedResult = convertMongoGroupToStockObject(data);
+        res.json(convertedResult);
       }
-      res.json(allStocks);
     });
   });
+
+  convertMongoGroupToStockObject = (aggregateData) => {
+    return aggregateData.map(data => {
+      return {
+        epic: data['_id'],
+        name: data.name,
+        count: data.count,
+        avgChange: data.avgChange,
+        avgPrice: data.avgPrice
+      }
+    })
+  }
 
   //update specified stock
   app.put('/stocks/:id', function(req, res){

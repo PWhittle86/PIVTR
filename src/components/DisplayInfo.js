@@ -28,7 +28,7 @@ const DisplayInfo = (props) => {
   return(
     <React.Fragment>
       <p>{props.quote.companyName}</p>
-      <button onClick={createStock}>buy</button>
+      <button className="buy button" onClick={createStock}>buy</button>
     </React.Fragment>
   )
 

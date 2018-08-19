@@ -1,9 +1,10 @@
 import React from 'react';
 import './StockContainer.css';
-import StockTable from '../components/StockTable.js'
-import InfoChart from '../components/InfoChart.js'
+// import StockTable from '../components/StockTable.js';
+import InfoChart from '../components/InfoChart.js';
 import PortfolioTable from '../components/PortfolioTable.js';
 import StockSearch from '../components/StockSearch.js';
+import Rotator from '../components/Rotator.js';
 
 
 class StockContainer extends React.Component {
@@ -33,14 +34,42 @@ class StockContainer extends React.Component {
   }
 
   onStockSave = (stock) => {
-    //spread operator https://davidwalsh.name/spread-operator
     // onStockSave sends up state change from <DisplayInfo/>
-    this.setState({ portfolio: [...this.state.portfolio, stock] })
+    const portfolio = this.state.portfolio;
+    if(portfolio && portfolio.length > 0) {
+      const index = portfolio.findIndex(currentStock => currentStock.epic === stock.epic);
+      // we already have this -> increment counter
+      if(index !== -1) {
+        portfolio[index].count++;
+        this.setState({ portfolio })
+      // new item, add it to portfolio without sending request to server
+      } else {
+        // create an object that matches the mongo schema
+        const portfolioStock = {
+          epic: stock.epic,
+          name: stock.name,
+          count: 1,
+          avgChange: stock.change,
+          avgPrice: stock.price
+        }
+        //spread operator https://davidwalsh.name/spread-operator
+        this.setState({ portfolio: [...this.state.portfolio, portfolioStock] });
+      }
+    }
   }
 
   render(){
     return(
       <React.Fragment>
+        <Rotator stocks={this.state.stocks}/>
+        <div id="mission-statement" className="box">
+
+          <p>At PIVTR we believe in one thing: optimising frictionless web-readiness. But what does that mean?</p>
+          <p>It means we're a forward-thinking anti-conglomerate who work tirelessly to incubate cutting-edge paradigms and above all else: synergise backwards overflow.</p>
+          <p>What this means for your personal portfolio is that you can be sure we won't just repurpose out-of-the-box methodologies. We'll evolve robust partnerships. Seize ubiquitous communities. We will <i>innovate transparent e-tailers.</i></p>
+          <p>So don't stick in the mud of the beaten path you've walked before. Don't be a limiter. Be a <b>PIVTR</b>.</p>
+
+        </div>
         <div className="top-elements">
           <div className="portfolio-table box">
               <PortfolioTable portfolio={this.state.portfolio}/>

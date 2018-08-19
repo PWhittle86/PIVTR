@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 class PortfolioTable extends React.Component {
   render() {
@@ -8,23 +8,27 @@ class PortfolioTable extends React.Component {
         <tr key={index}>
           <td className="ellipsis">{stock.name}</td>
           <td>{stock.epic}</td>
-          <td>{stock.price}</td>
-          <td>{stock.change}</td>
-          <td><button className="buy-button">buy</button></td>
-          <td><button className="sell-button">sell</button></td>
+          <td>{parseFloat(stock.avgPrice).toFixed(3)}</td>
+          <td>{parseFloat(stock.avgChange).toFixed(3)}</td>
+          <td>{stock.count}</td>
+          <td>dd-mm-yyyy</td>
+          <td><button className="buy button">buy</button></td>
+          <td><button className="sell button">sell</button></td>
         </tr>
       )
     });
 
     return (
-      <section id="stock-table">
-        <table>
+      <section>
+        <table className="stock-table" cellSpacing="0">
             <thead>
               <tr>
                 <th className="ellipsis">Name</th>
                 <th>Epic</th>
-                <th>Price</th>
-                <th>Change</th>
+                <th>Avg. Price</th>
+                <th>Avg. Change</th>
+                <th>Qty</th>
+                <th>Date (??)</th>
               </tr>
             </thead>
             <tbody>

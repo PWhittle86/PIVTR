@@ -28,6 +28,7 @@ class StockSearch extends React.Component {
   render(){
     return(
       <div id="stock-search">
+        <h2>Search box</h2>
         <input type="text"
           placeholder="Search.."
           // need to persist SyntheticEvent https://reactjs.org/docs/events.html -> React event pooling

@@ -1,20 +1,9 @@
-/* .main-elements {
-
-  display: flex;
-  padding-left: 30px;
-  padding-right: 30px;
-  flex-wrap: wrap;
-
-} */
-
 .main-elements .top-elements {
-
   display: flex;
   padding: 30px;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
-
 }
 
 .info-chart {
@@ -25,8 +14,68 @@
   padding-right: 15px;
 }
 
-.buy-button {
-  background-color: #4caf50;
+.stock-table tr {
+  margin-bottom: 5px;
+}
+
+.stock-table tr:nth-child(even) {
+  background: #F7EEED;
+}
+
+.button {
   border: none;
-  box-shadow: 0 2px 2px 0 rgba(76, 175, 80, 0.14), 0 3px 1px -2px rgba(76, 175, 80, 0.2), 0 1px 5px 0 rgba(76, 175, 80, 0.12);
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  /* color: white; */
+}
+
+.buy {
+  box-shadow: 0 2px 2px 0 rgba(76, 175, 80, 0.14),
+              0 3px 1px -2px rgba(76, 175, 80, 0.2),
+              0 1px 5px 0 rgba(76, 175, 80, 0.12);
+  background-color: #4caf50;
+}
+
+.sell {
+  box-shadow: 0 2px 2px 0 rgba(233, 30, 99, 0.14),
+              0 3px 1px -2px rgba(233, 30, 99, 0.2),
+              0 1px 5px 0 rgba(233, 30, 99, 0.12);
+  background-color: #e91e63;
+  color: white;
+}
+
+
+.rotator {
+  margin-bottom: 10px;
+  height: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 6px 5px 8px;
+  background-color: black;
+  color: white;
+}
+
+.rotator-text {
+  display: inline-block;
+  line-height: 0;
+  padding-left: 110%;
+  animation: rotator 40s linear infinite;
+}
+
+.rotator-text span {
+  margin-left: 40px;
+}
+.rotator-text span span {
+  margin-left: 20px;
+}
+
+/* @-webkit-keyframes rotator {
+    from {right: 0px;}
+    to {left: 100%;}
+} */
+
+@keyframes rotator {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
 }
