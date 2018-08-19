@@ -8,8 +8,9 @@ class PortfolioTable extends React.Component {
         <tr key={index}>
           <td className="ellipsis">{stock.name}</td>
           <td>{stock.epic}</td>
-          <td>{parseFloat(stock.avgPrice).toFixed(3)}</td>
-          <td>{parseFloat(stock.avgChange).toFixed(3)}</td>
+          <td>{parseFloat(stock.avgPrice).toFixed(2)}</td>
+          <td>{parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>
+          <td>{parseFloat(stock.avgChange).toFixed(2)}</td>
           <td>{stock.count}</td>
           <td>dd-mm-yyyy</td>
           <td><button className="buy button">buy</button></td>
@@ -26,6 +27,7 @@ class PortfolioTable extends React.Component {
                 <th className="ellipsis">Name</th>
                 <th>Epic</th>
                 <th>Avg. Price</th>
+                <th>Total Value</th>
                 <th>Avg. Change</th>
                 <th>Qty</th>
                 <th>Date (??)</th>
