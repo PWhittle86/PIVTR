@@ -2,8 +2,8 @@ import React from 'react';
 
 class PortfolioTable extends React.Component {
 
-  const generateChart() => {
-    props.clickButton(stock)
+  const generateChart(stock) => {
+    props.clickButton(stock.symbol)
     // get the symbol of the stock which has been clicked, pass it in to the url which infochart fetches
   }
 
