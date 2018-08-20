@@ -24,7 +24,11 @@ table {
 }
 
 th {
-  text-align: left;
+  text-align: center;
+}
+
+td {
+  text-align: center;
 }
 
 .ellipsis {

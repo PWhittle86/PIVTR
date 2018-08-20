@@ -5,19 +5,26 @@ class PortfolioTable extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      stock_prices: {}
+      stock_prices: {},
+      stock_change: {}
     }
   }
 
   componentDidMount(){
 
-    const priceObject = {}
+    const priceObject = {};
+    const changeObject = {};
 
     this.props.stocks.forEach((quote) => {
       priceObject[quote.symbol] = quote.latestPrice;
     });
 
+    this.props.stocks.forEach((quote) => {
+      changeObject[quote.symbol] = quote.changePercent;
+    })
+
     this.setState({stock_prices: priceObject});
+    this.setState({stock_change: changeObject});
   }
 
   render() {
@@ -29,11 +36,15 @@ class PortfolioTable extends React.Component {
           <td className="ellipsis">{stock.name}</td>
           <td>{stock.epic}</td>
           <td>{this.state.stock_prices[stock.epic]}</td>
-          <td>{parseFloat(stock.avgPrice).toFixed(2)}</td>
-          <td>{parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>
-          <td>{parseFloat(stock.avgChange).toFixed(2)}</td>
+          <td>{this.state.stock_change[stock.epic]}</td>
           <td>{stock.count}</td>
-          <td>dd-mm-yy</td>
+          <td>${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
+          <td>${parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>
+          <td>${parseFloat((this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)).toFixed(2)}</td>
+          {/* <td>{parseFloat(stock.avgChange).toFixed(2)}</td>
+          <td>{parseFloat(stock.avgPrice).toFixed(2)}</td> */}
+
+          {/* <td>dd-mm-yy</td> */}
           <td><button className="buy button">buy</button></td>
           <td><button className="sell button">sell</button></td>
         </tr>
@@ -48,16 +59,37 @@ class PortfolioTable extends React.Component {
               <th className="ellipsis">Name</th>
               <th>Epic</th>
               <th>Current Price</th>
-              <th>Avg. Price</th>
-              <th>Total Value</th>
-              <th>Avg. Change</th>
-              <th>Qty</th>
-              <th>Date (??)</th>
+              <th>Change %</th>
+              <th>Shares Held</th>
+              <th>Total Market Value</th>
+              <th>Total Book Cost</th>
+              <th>Profit/Loss</th>
+              {/* <th>Total Change</th> */}
+
+              {/* <th>Date (??)</th> */}
             </tr>
           </thead>
           <tbody>
             { stockRow }
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Overall Market Value</td>
+            <td>Overall Book Cost</td>
+            <td>Overall Profit</td>
+            <td></td>
           </tbody>
+          <tfoot>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Overall Market Value</th>
+            <th>Overall Book Cost</th>
+            <th>Overall Profit</th>
+            <th></th>
+          </tfoot>
         </table>
       </section>
     )
