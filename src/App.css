@@ -7,11 +7,17 @@ body {
 }
 
 #app-header {
+  background-image: url('./images/barchart.png');
+  /* background-position: bottom; */
+  background-size: contain;
+  background-repeat: no-repeat;
   font-family: Yanone Kaffeesatz;
   font-size: 80px;
   text-align: center;
-  margin-top: 10px;
-  line-height: 30px;
+}
+
+#app-header h1 {
+  margin: 0;
 }
 
 /* Removes blue outline from buttons in Chrome */
@@ -24,11 +30,8 @@ table {
 }
 
 th {
-  text-align: center;
-}
-
-td {
-  text-align: center;
+  text-align: left;
+  padding-right: 30px;
 }
 
 .ellipsis {

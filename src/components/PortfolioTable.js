@@ -1,4 +1,5 @@
 import React from 'react';
+import SellPopUp from './SellPopUp.js';
 
 class PortfolioTable extends React.Component {
 
@@ -7,7 +8,9 @@ class PortfolioTable extends React.Component {
     this.state = {
       stock_prices: {},
       stock_change: {},
-      portfolio_prices: {}
+      portfolio_prices: {},
+      showSellPopUp: false,
+      popupStock: undefined
     }
   }
 
@@ -34,6 +37,58 @@ class PortfolioTable extends React.Component {
     this.setState({portfolio_prices: portfolioObject});
   }
 
+  createStock = (quote) => {
+    const stock = {
+      name: quote.name,
+      epic: quote.epic,
+      price: quote.avgPrice,
+      change: quote.avgChange,
+      time: Date.now()
+    }
+    this.saveStock(stock);
+  }
+
+  saveStock = (stock) => {
+    fetch(`http://localhost:3001/stocks`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(stock)
+    })
+    .then(response => response.json())
+    .then(response => this.onStockSave(response));
+  }
+
+  onStockSave = (stock) => {
+    // onStockSave sends up state change from <DisplayInfo/>
+    const portfolio = this.props.portfolio;
+    if(portfolio && portfolio.length > 0) {
+      const index = portfolio.findIndex(currentStock => currentStock.epic === stock.epic);
+      // we already have this -> increment counter
+      if(index !== -1) {
+        portfolio[index].count++;
+        this.setState({ portfolio })
+      // new item, add it to portfolio without sending request to server
+      } else {
+        // create an object that matches the mongo schema
+        const portfolioStock = {
+          epic: stock.epic,
+          name: stock.name,
+          count: 1,
+          avgChange: stock.change,
+          avgPrice: stock.price
+        }
+        //spread operator https://davidwalsh.name/spread-operator
+        this.setState({ portfolio: [...this.state.portfolio, portfolioStock] });
+      }
+    }
+  }
+
+  showSellPopUp = (stock) => {
+    this.setState({showSellPopUp: !this.state.showSellPopUp, popupStock: stock})
+  }
+
   render() {
 
     const stockRow = this.props.portfolio.map((stock, index) => {
@@ -52,8 +107,8 @@ class PortfolioTable extends React.Component {
           <td>{parseFloat(stock.avgPrice).toFixed(2)}</td> */}
 
           {/* <td>dd-mm-yy</td> */}
-          <td><button className="buy button">buy</button></td>
-          <td><button className="sell button">sell</button></td>
+          <td><button className="buy button" onClick={() => this.createStock(stock)}>buy</button></td>
+          <td><button className="sell button" onClick={() => this.showSellPopUp(stock)}>sell</button></td>
         </tr>
       )
     });
@@ -79,10 +134,12 @@ class PortfolioTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            { stockRow }
-            <tr></tr>
+              { this.state.showSellPopUp ? <SellPopUp stock={this.state.popupStock} close={this.showSellPopUp}/> : undefined }
+              { stockRow }
+              <tr></tr>
           </tbody>
           <tfoot>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
