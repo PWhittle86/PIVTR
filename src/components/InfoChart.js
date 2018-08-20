@@ -10,7 +10,8 @@ class InfoChart extends React.Component {
   }
 
 componentDidMount(){
-  //do a fetch request to get the stocks daily performance
+  // the url below needs to change based on user input
+  // generateChart should send info to change the symbol below[ie aapl]
   fetch(`https://api.iextrading.com/1.0/stock/aapl/chart/1m`)
   .then(response => response.json())
   .then(shares => {
@@ -19,7 +20,6 @@ componentDidMount(){
         {time: stock.label, price: stock.vwap}
       )
     })
-      //a function that returns every share in the format {time: share.label, average: share.average})
   }).then(data => this.setState({data}))
 }
 
@@ -27,12 +27,14 @@ componentDidMount(){
 
 render(){
 return(
+  <React.Fragment>
   <LineChart width={600} height={400} data={this.state.data}>
     <Line type="monotone" dataKey="price" stroke="#8884d8" />
     <CartesianGrid strokeDasharray="3 3" />
     <XAxis dataKey="time" />
     <YAxis/>
   </LineChart>
+  </React.Fragment>
 )}
 }
 

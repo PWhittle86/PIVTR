@@ -12,7 +12,9 @@ class StockContainer extends React.Component {
     super(props);
     this.state = {
       stocks: [],
-      portfolio: []
+      portfolio: [],
+      selectedStock: null
+
     }
   }
 
@@ -31,6 +33,10 @@ class StockContainer extends React.Component {
     fetch('http://localhost:3001/stocks')
     .then(response => response.json())
     .then(portfolio => this.setState({portfolio: portfolio}));
+  }
+
+  onStockSelect = (stock) => {
+    this.setState({selectedStock: stock});
   }
 
   onStockSave = (stock) => {

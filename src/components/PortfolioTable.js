@@ -1,12 +1,18 @@
 import React from 'react';
 
 class PortfolioTable extends React.Component {
+
+  const generateChart() => {
+    props.clickButton(stock)
+    // get the symbol of the stock which has been clicked, pass it in to the url which infochart fetches
+  }
+
   render() {
 
     const stockRow = this.props.portfolio.map((stock, index) => {
       return (
         <tr key={index}>
-          <td className="ellipsis">{stock.name}</td>
+          <td className="ellipsis" onClick={onStockSelect}>{stock.name}</td>
           <td>{stock.epic}</td>
           <td>{parseFloat(stock.avgPrice).toFixed(3)}</td>
           <td>{parseFloat(stock.avgChange).toFixed(3)}</td>
