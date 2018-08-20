@@ -61,6 +61,7 @@ class StockContainer extends React.Component {
   render(){
     return(
       <React.Fragment>
+        <section id="app-header"><h1>PIVTR</h1></section>
         <Rotator stocks={this.state.stocks}/>
         <div id="mission-statement" className="box">
 

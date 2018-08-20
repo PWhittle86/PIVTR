@@ -41,7 +41,6 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
   //DATABASE CALLS
 
   // post a new line of stock in the user's portfolio
-
   app.post('/stocks', function(req, res) {
     const stocksCollection = db.collection('stocks');
     const stockToSave = req.body;
@@ -82,6 +81,24 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
     });
   });
 
+  // get all stock for one EPIC code
+  app.get('/stocks/:epic', function(req, res) {
+    const stocksCollection = db.collection('stocks');
+    const epicCode = req.params.epic;
+    const filterObject = {epic: epicCode};
+
+    stocksCollection.find(filterObject).toArray((err, result) => {
+      if(err){
+        console.log(err);
+        res.status(500);
+        res.send();
+      }
+      console.log(result);
+      res.status(200);
+      res.json(result);
+    });
+  });
+
   convertMongoGroupToStockObject = (aggregateData) => {
     return aggregateData.map(data => {
       return {
@@ -93,26 +110,6 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
       }
     })
   }
-
-  //update specified stock
-  app.put('/stocks/:id', function(req, res){
-    console.log("stock updated");
-    const stocksCollection = db.collection('stocks');
-    const stockID = ObjectID(req.params.id);
-    const filterObject = {_id: stockID};
-    const updatedData = req.body;
-
-    stocksCollection.update(filterObject, updatedData, function(err, result){
-      if(err){
-        console.log(err);
-        res.status(500);
-        res.send;
-      }
-      res.status(200);
-      res.json(result);
-      res.send;
-    });
-  });
 
   //delete all stocks
   app.delete('/stocks', function(req, res){
