@@ -71,7 +71,7 @@ class StockContainer extends React.Component {
         </div>
         <div className="top-elements">
           <div className="portfolio-table box">
-              <PortfolioTable stocks={this.state.stocks} portfolio={this.state.portfolio}/>
+              {this.state.stocks.length > 1 && this.state.portfolio.length > 1 ? <PortfolioTable stocks={this.state.stocks} portfolio={this.state.portfolio}/> : null}
           </div>
           <div className="found-stock box">
               <StockSearch onStockSave={this.onStockSave} />
