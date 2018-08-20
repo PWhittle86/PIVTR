@@ -6,7 +6,8 @@ class PortfolioTable extends React.Component {
     super(props);
     this.state = {
       stock_prices: {},
-      stock_change: {}
+      stock_change: {},
+      portfolio_prices: {}
     }
   }
 
@@ -14,6 +15,7 @@ class PortfolioTable extends React.Component {
 
     const priceObject = {};
     const changeObject = {};
+    const portfolioObject = {};
 
     this.props.stocks.forEach((quote) => {
       priceObject[quote.symbol] = quote.latestPrice;
@@ -23,8 +25,13 @@ class PortfolioTable extends React.Component {
       changeObject[quote.symbol] = quote.changePercent;
     })
 
+    this.props.portfolio.forEach((stock) => {
+      portfolioObject[stock.symbol] = stock.avgPrice;
+    })
+
     this.setState({stock_prices: priceObject});
     this.setState({stock_change: changeObject});
+    this.setState({portfolio_prices: portfolioObject});
   }
 
   render() {
@@ -35,7 +42,7 @@ class PortfolioTable extends React.Component {
         <tr key={index}>
           <td className="ellipsis">{stock.name}</td>
           <td>{stock.epic}</td>
-          <td>{this.state.stock_prices[stock.epic]}</td>
+          <td>${this.state.stock_prices[stock.epic]}</td>
           <td>{this.state.stock_change[stock.epic]}</td>
           <td>{stock.count}</td>
           <td>${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
@@ -50,6 +57,8 @@ class PortfolioTable extends React.Component {
         </tr>
       )
     });
+
+
 
     return (
       <section>
@@ -71,14 +80,7 @@ class PortfolioTable extends React.Component {
           </thead>
           <tbody>
             { stockRow }
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Overall Market Value</td>
-            <td>Overall Book Cost</td>
-            <td>Overall Profit</td>
-            <td></td>
+            <tr></tr>
           </tbody>
           <tfoot>
             <th></th>
