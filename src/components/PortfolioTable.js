@@ -4,7 +4,8 @@ import SellPopUp from './SellPopUp.js';
 class PortfolioTable extends React.Component {
 
   state = {
-      showSellPopUp: false
+      showSellPopUp: false,
+      popupStock: undefined
   }
 
   createStock = (quote) => {
@@ -55,16 +56,16 @@ class PortfolioTable extends React.Component {
     }
   }
 
-  showSellPopUp = () => {
-    this.setState({showSellPopUp: !this.state.showSellPopUp})
+  showSellPopUp = (stock) => {
+    this.setState({showSellPopUp: !this.state.showSellPopUp, popupStock: stock})
   }
+
 
   render() {
 
     const stockRow = this.props.portfolio.map((stock, index) => {
       return (
         <React.Fragment>
-          { this.state.showSellPopUp ? <SellPopUp stock={stock} /> : undefined }
           <tr key={index}>
             <td className="ellipsis">{stock.name}</td>
             <td>{stock.epic}</td>
@@ -73,7 +74,7 @@ class PortfolioTable extends React.Component {
             <td>{stock.count}</td>
             <td>dd-mm-yyyy</td>
             <td><button className="buy button" onClick={() => this.createStock(stock)}>buy</button></td>
-            <td><button className="sell button" onClick={this.showSellPopUp}>sell</button></td>
+            <td><button className="sell button" onClick={() => this.showSellPopUp(stock)}>sell</button></td>
           </tr>
         </React.Fragment>
       )
@@ -87,12 +88,13 @@ class PortfolioTable extends React.Component {
                 <th className="ellipsis">Name</th>
                 <th>Epic</th>
                 <th>Avg. Price</th>
-                <th>Avg. Change</th>
+                <th>Change</th>
                 <th>Qty</th>
-                <th>Date (??)</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
+                { this.state.showSellPopUp ? <SellPopUp stock={this.state.popupStock} close={this.showSellPopUp}/> : undefined }
                 { stockRow }
             </tbody>
         </table>

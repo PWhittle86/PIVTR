@@ -49,10 +49,11 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
         console.log(error);
         res.status(500);
         res.send();
+      } else {
+        console.log('saved to database');
+        res.status(201);
+        res.json(result.ops[0]); // result object > operations property
       }
-      console.log('saved to database');
-      res.status(201);
-      res.json(result.ops[0]); // result object > operations property
     });
   });
 
@@ -92,10 +93,10 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
         console.log(err);
         res.status(500);
         res.send();
+      } else {
+        res.status(200);
+        res.json(result);
       }
-      console.log(result);
-      res.status(200);
-      res.json(result);
     });
   });
 
@@ -108,38 +109,31 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
         avgChange: data.avgChange,
         avgPrice: data.avgPrice
       }
-    })
+    });
   }
 
-  //delete all stocks
-  app.delete('/stocks', function(req, res){
-    console.log("All stocks deleted");
-    const filterObject = {};
-    const stocksCollection = db.collection('stocks');
-    stocksCollection.deleteMany(filterObject, function(err, result){
-      if(err){
-        res.status(500);
-        res.send();
-      }
-      res.status(204);
-      res.send();
-    })
-  })
-
-  //delete specified stock
-  app.delete('/stocks/:id', function (req, res){
-    const stocksCollection = db.collection('stocks');
-    const stockID = ObjectID(req.params.id);
-    const filterObject = {_id: stockID};
-
-    stocksCollection.deleteOne(filterObject, function(err, result){
-      if(err){
-        res.status(500);
-        res.send();
-      }
-      res.status(200);
-      res.json(result);
-    });
+  //delete specified stock based on EPIC key and NUMBER of stocks to delete
+  app.delete('/stocks/:epic/:numberToSell', function(req, res){
+    const epicCode = req.params.epic;
+    const numberToSell = parseInt(req.params.numberToSell);
+    const stocksToRemove = db.collection('stocks')
+      .find({epic: epicCode})
+      .limit(numberToSell)
+      .toArray((error, data) => {
+        if(error){
+          console.log(error);
+        } else {
+          const ids = data.map(stock => stock._id);
+          db.collection('stocks').deleteMany({ _id: { $in: ids }}, (err, data) => {
+            if(err) {
+              console.log(error);
+            } else {
+              res.status(200);
+              res.send(data);
+            }
+          });
+        }
+      });
   });
 
 app.listen(3001, function(){
