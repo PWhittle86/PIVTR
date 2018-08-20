@@ -38,7 +38,6 @@ class StockContainer extends React.Component {
   onStockSelect = (event) => {
     let stock = event.target
     this.setState({selectedStock: stock});
-    generateChart(selectedStock);
   }
 
   onStockSave = (stock) => {

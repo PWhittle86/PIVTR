@@ -1,32 +1,38 @@
 import React from 'react';
 
 class PortfolioTable extends React.Component {
+  constructor(props){
+    super(props);
 
-  const generateChart(stock) => {
-    props.clickButton(stock.symbol)
-    // get the symbol of the stock which has been clicked, pass it in to the url which infochart fetches
-  }
+    const generateChart = () => {
+      props.selectedStock
+      props.clickButton(selectedStock.symbol)
+      // get the symbol of the stock which has been clicked, pass it in to the url which infochart fetches
+    }
 
-  render() {
 
-    const stockRow = this.props.portfolio.map((stock, index) => {
+
+
+    render() {
+
+      const stockRow = this.props.portfolio.map((stock, index) => {
+        return (
+          <tr key={index}>
+            <td className="ellipsis" onClick={generateChart}>{stock.name}</td>
+            <td>{stock.epic}</td>
+            <td>{parseFloat(stock.avgPrice).toFixed(3)}</td>
+            <td>{parseFloat(stock.avgChange).toFixed(3)}</td>
+            <td>{stock.count}</td>
+            <td>dd-mm-yyyy</td>
+            <td><button className="buy button">buy</button></td>
+            <td><button className="sell button">sell</button></td>
+          </tr>
+        )
+      });
+
       return (
-        <tr key={index}>
-          <td className="ellipsis" onClick={onStockSelect}>{stock.name}</td>
-          <td>{stock.epic}</td>
-          <td>{parseFloat(stock.avgPrice).toFixed(3)}</td>
-          <td>{parseFloat(stock.avgChange).toFixed(3)}</td>
-          <td>{stock.count}</td>
-          <td>dd-mm-yyyy</td>
-          <td><button className="buy button">buy</button></td>
-          <td><button className="sell button">sell</button></td>
-        </tr>
-      )
-    });
-
-    return (
-      <section>
-        <table className="stock-table" cellSpacing="0">
+        <section>
+          <table className="stock-table" cellSpacing="0">
             <thead>
               <tr>
                 <th className="ellipsis">Name</th>
@@ -38,11 +44,12 @@ class PortfolioTable extends React.Component {
               </tr>
             </thead>
             <tbody>
-                { stockRow }
+              { stockRow }
             </tbody>
-        </table>
-      </section>
-    )
+          </table>
+        </section>
+      )
+    }
   }
 }
 
