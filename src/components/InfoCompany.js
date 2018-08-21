@@ -11,29 +11,32 @@ class InfoCompany extends React.Component{
   }
 
   componentDidUpdate(prevProps, prevState){
-    console.log(prevProps.selectedStock.epic, this.props.selectedStock.epic);
-    // debugger;
+
+
     if(prevProps.selectedStock.epic !== this.props.selectedStock.epic){
       const epic = this.props.selectedStock.epic
 
-      fetch(`https://api.iextrading.com/1.0/stock/${epic}/news`)
+      fetch(`https://api.iextrading.com/1.0/stock/${epic}/company`)
       .then(response => response.json())
-      .then(companyNews => this.setState({companyNews: companyNews}))
+      .then(companyInfo => this.setState({companyInfo: companyInfo}))
     }
-
-
-
-    // fetch(`https://api.iextrading.com/1.0/stock/${epic}/company`)
-    // .then(response => response.json())
-    // .then(companyInfo => this.setState({companyInfo: companyInfo}))
-
-
   }
 
   render(){
 
+
+    const newsArticles = this.state.companyNews.map((newsItem, index) => {
+      return(
+        <section>
+        <h3>{newsItem.headline}</h3>
+        <p>{newsItem.summary}</p>
+        <p>Source: {newsItem.url}</p>
+      </section>
+      )
+    })
+
     return(
-      <React.Fragment>
+      <section>
       <ul className="companyInfo">
         <li>{this.state.companyInfo.companyName}</li>
         <li>Industry: {this.state.companyInfo.industry}</li>
@@ -41,7 +44,10 @@ class InfoCompany extends React.Component{
         <li>Exchange: {this.state.companyInfo.exchange}</li>
         <li>{this.state.companyInfo.website}</li>
       </ul>
-      </React.Fragment>
+
+      {newsArticles}
+    </section>
+
     )
   }
 }

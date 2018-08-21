@@ -1,6 +1,6 @@
 .main-elements .top-elements {
   display: flex;
-  padding: 30px;
+  /* padding: 30px; */
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
@@ -57,19 +57,21 @@
 
 /* PORTFOLIO TABLE */
 
-.heart {
-  background-image: url('../images/heart.png');
+.heart, .heart:hover, .heart_active {
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  cursor: pointer;
   height: 20px;
   width: 20px;
   border: none;
 }
 
-.heart:hover, .heart.active {
-  background-image: url('../images/heart_hover.png');
-  cursor: pointer;
+.heart {
+  background-image: url('/images/heart.png');
+}
+
+.heart:hover, .heart_active {
+  background-image: url('/images/heart_hover.png');
 }
 
 .stock-table tr {
@@ -119,11 +121,6 @@
   cursor: pointer;
 }
 
-.ellipsis: hover {
-
-}
-
-
 /* SELL OPTIONS POP UP */
 .red-border { border: 3px #e91e63 solid; }
 .green-border { border: 3px #4caf50 solid; }
@@ -144,6 +141,23 @@
   animation: showSweetAlert 0.3s ease 0s 1 normal none running;
 }
 
+/* SEARCH BOX */
+
+.stock-search {
+  width: 240px;
+  font-size: 20px;
+}
+
+.stock-search h2 {
+  font-size: 32px;
+}
+
+.stock-search input[type=text] {
+  height: 36px;
+  width: -webkit-fill-available;
+  font-size: 14px;
+}
+
 /* INFOCHART */
 
 .time {
@@ -155,7 +169,7 @@
 }
 
 .time:hover {
-  
+
   border-bottom: 1px solid orange;
 }
 
@@ -164,12 +178,7 @@
 #footer {
   margin-top: 30px;
   background-color: #AFD3D3;
-  background-image: url('../images/footer.jpg');
-  background-position: left;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 300px;
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
@@ -183,27 +192,49 @@
 
 }
 
-#impressum {
-
-  /* margin-top: 280px; */
-
-}
-
 #footer-content {
   text-align: center;
   vertical-align: bottom;
   color: white;
+  display: flex;
+}
+
+#footer-image img{
+  width: 300px;
+  height: 300px;
+}
+
+#mission-statement {
+  margin: 10px auto 50px;
   font-size: 18px;
   width: 60%;
   float: right;
   padding-right: 50px;
 }
 
-#footer-content a {
+#impressum {
+  position: fixed;
+  bottom: 0;
+  background-color: #AFD3D3;
+  width: 60%;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 300px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+#impressum a {
   text-decoration: none;
   color: white;
 }
 
-#footer-content a:hover {
+#impressum a:hover {
   text-decoration: underline;
+}
+
+#impressum a img {
+  margin-bottom: -10px;
+  margin-left: 10px;
+  height: 50px;
 }
