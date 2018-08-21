@@ -12,8 +12,7 @@ class StockContainer extends React.Component {
     this.state = {
       stocks: [],
       portfolio: [],
-      selectedStock: null
-
+      selectedStock: {epic: "aapl"}
     }
   }
 
@@ -85,7 +84,7 @@ class StockContainer extends React.Component {
           </div>
         </div>
         <div className="info-chart box">
-            {this.state.selectedStock ? <InfoChart selectedStock={this.state.selectedStock}/>:undefined}
+            <InfoChart selectedStock={this.state.selectedStock}/>
             {/* <StockTable stocks={this.state.stocks}/> */}
             {/* <-keep this, might need later  */}
         </div>
