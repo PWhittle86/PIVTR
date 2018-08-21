@@ -37,21 +37,21 @@ render(){
 return(
   <React.Fragment>
     <div className="time-periods">
-      <button onClick={()=>this.changeTime("1m")}>1M</button>
-      <button onClick={()=>this.changeTime("3m")}>3M</button>
-      <button onClick={()=>this.changeTime("6m")}>6M</button>
-      <button onClick={()=>this.changeTime("1y")}>1Y</button>
-      <button onClick={()=>this.changeTime("2y")}>2Y</button>
-      <button onClick={()=>this.changeTime("5y")}>5Y</button>
+      <button className="time button" onClick={()=>this.changeTime("1m")}>1M</button>
+      <button className="time button" onClick={()=>this.changeTime("3m")}>3M</button>
+      <button className="time button" onClick={()=>this.changeTime("6m")}>6M</button>
+      <button className="time button" onClick={()=>this.changeTime("1y")}>1Y</button>
+      <button className="time button" onClick={()=>this.changeTime("2y")}>2Y</button>
+      <button className="time button" onClick={()=>this.changeTime("5y")}>5Y</button>
     </div>
     <p>{epicCAPS}</p>
   <LineChart className="lineChart" width={600} height={400} data={this.state.data}>
-    <Line type="monotone" dot={true} dataKey="price" stroke="#8884d8" strokeWidth={2} activeDot={{r: 6}} />
+    <Line type="monotone" dot={false} dataKey="price" stroke="#8884d8" strokeWidth={2} />
     <CartesianGrid strokeDasharray="3 3" />
     <XAxis dataKey="time" />
     <YAxis/>
     <Legend />
-    <Tooltip/>
+    <Tooltip />
   </LineChart>
   </React.Fragment>
 )}

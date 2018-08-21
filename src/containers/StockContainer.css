@@ -144,6 +144,21 @@
   animation: showSweetAlert 0.3s ease 0s 1 normal none running;
 }
 
+/* INFOCHART */
+
+.time {
+  box-shadow: 0 2px 2px 0 rgba(233, 30, 99, 0.14),
+              0 3px 1px -2px rgba(233, 30, 99, 0.2),
+              0 1px 5px 0 rgba(233, 30, 99, 0.12);
+  background-color: lightpink;
+  border-bottom: 3px solid orange;
+}
+
+.time:hover {
+  
+  border-bottom: 1px solid orange;
+}
+
 /* FOOTER */
 
 #footer {
@@ -158,10 +173,20 @@
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.mission-statement {
+
+  float: right;
+
 }
 
 #impressum {
-  margin-top: 280px;
+
+  /* margin-top: 280px; */
+
 }
 
 #footer-content {
@@ -169,6 +194,9 @@
   vertical-align: bottom;
   color: white;
   font-size: 18px;
+  width: 60%;
+  float: right;
+  padding-right: 50px;
 }
 
 #footer-content a {
