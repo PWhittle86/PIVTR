@@ -26,7 +26,7 @@ class StockSearch extends React.Component {
 
   render(){
     return(
-      <div id="stock-search">
+      <div>
         <h2>Search box</h2>
         <input type="text"
           placeholder="Search.."

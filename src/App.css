@@ -7,8 +7,7 @@ body {
 }
 
 #app-header {
-  background-image: url('./images/barchart.png');
-  /* background-position: bottom; */
+  background-image: url('/images/barchart.png');
   background-size: contain;
   background-repeat: no-repeat;
   font-family: Yanone Kaffeesatz;
@@ -34,6 +33,10 @@ th {
   padding-right: 30px;
 }
 
+li {
+  list-style: none;
+}
+
 .ellipsis {
   max-width: 260px;
   text-overflow: ellipsis;
@@ -50,4 +53,5 @@ th {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   background-color: #fff;
   border-radius: 6px;
+  margin-bottom: 20px;
 }
