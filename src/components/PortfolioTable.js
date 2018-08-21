@@ -3,22 +3,26 @@ import React from 'react';
 class PortfolioTable extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
 
-    const generateChart = () => {
-      props.selectedStock
-      props.clickButton(selectedStock.symbol)
-      // get the symbol of the stock which has been clicked, pass it in to the url which infochart fetches
     }
 
+    this.generateChart = this.generateChart.bind(this);
+
+}
 
 
+    generateChart() {
+      this.props.clickButton(this.selectedStock.symbol)}
+      // get the symbol of the stock which has been clicked, pass it in to the url which infochart fetches
 
-    render() {
+
+    render(){
 
       const stockRow = this.props.portfolio.map((stock, index) => {
         return (
           <tr key={index}>
-            <td className="ellipsis" onClick={generateChart}>{stock.name}</td>
+            <td className="ellipsis" onClick={this.generateChart}>{stock.name}</td>
             <td>{stock.epic}</td>
             <td>{parseFloat(stock.avgPrice).toFixed(3)}</td>
             <td>{parseFloat(stock.avgChange).toFixed(3)}</td>
@@ -51,6 +55,6 @@ class PortfolioTable extends React.Component {
       )
     }
   }
-}
+
 
 export default PortfolioTable;
