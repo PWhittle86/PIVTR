@@ -1,17 +1,23 @@
 body {
   font-family: Raleway;
   /* can write padding/margin as oneliner */
-  margin: 5px 25px 10px 25px;
-  padding: 30px;
+  margin: 5px 25px 0px 25px;
+  padding: 30px 30px 0px 30px;
   background-color: #eee;
 }
 
 #app-header {
+  background-image: url('./images/barchart.png');
+  /* background-position: bottom; */
+  background-size: contain;
+  background-repeat: no-repeat;
   font-family: Yanone Kaffeesatz;
   font-size: 80px;
   text-align: center;
-  margin-top: 10px;
-  line-height: 30px;
+}
+
+#app-header h1 {
+  margin: 0;
 }
 
 /* Removes blue outline from buttons in Chrome */
@@ -25,6 +31,7 @@ table {
 
 th {
   text-align: left;
+  padding-right: 30px;
 }
 
 .ellipsis {

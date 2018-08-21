@@ -5,7 +5,6 @@ import {debounce} from 'debounce';
 class StockSearch extends React.Component {
   // since ES6 no need to define state in constructor
   state = {
-    // searchText: '',
     result: undefined
   }
 
