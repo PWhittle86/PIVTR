@@ -5,6 +5,7 @@ import InfoChart from '../components/InfoChart.js';
 import PortfolioTable from '../components/PortfolioTable.js';
 import StockSearch from '../components/StockSearch.js';
 import Rotator from '../components/Rotator.js';
+import InfoCompany from '../components/InfoCompany.js';
 
 class StockContainer extends React.Component {
   constructor(props){
@@ -87,6 +88,9 @@ class StockContainer extends React.Component {
             <InfoChart selectedStock={this.state.selectedStock}/>
             {/* <StockTable stocks={this.state.stocks}/> */}
             {/* <-keep this, might need later  */}
+        </div>
+        <div className="info_news">
+          <InfoCompany selectedStock={this.state.selectedStock}/>
         </div>
         <footer id="footer">
             <div id="footer-content">
