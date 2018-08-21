@@ -12,12 +12,6 @@ class InfoCompany extends React.Component{
 
   componentDidUpdate(prevProps, prevState){
 
-    if(prevProps.selectedStock.epic !== this.props.selectedStock.epic){
-      const epic = this.props.selectedStock.epic
-      fetch(`https://api.iextrading.com/1.0/stock/${epic}/news`)
-      .then(response => response.json())
-      .then(companyNews => this.setState({companyNews: companyNews}))
-    }
 
     if(prevProps.selectedStock.epic !== this.props.selectedStock.epic){
       const epic = this.props.selectedStock.epic
@@ -29,6 +23,7 @@ class InfoCompany extends React.Component{
   }
 
   render(){
+
 
     const newsArticles = this.state.companyNews.map((newsItem, index) => {
       return(
@@ -49,8 +44,10 @@ class InfoCompany extends React.Component{
         <li>Exchange: {this.state.companyInfo.exchange}</li>
         <li>{this.state.companyInfo.website}</li>
       </ul>
+
       {newsArticles}
     </section>
+
     )
   }
 }
