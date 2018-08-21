@@ -75,6 +75,8 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
         res.status(500);
         res.send();
       } else {
+        // descending order based on number of shares held
+        data = data.sort((a,b) => a.count - b.count);
         const convertedResult = convertMongoGroupToStockObject(data);
         res.json(convertedResult);
       }

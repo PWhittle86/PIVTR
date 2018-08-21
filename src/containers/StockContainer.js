@@ -72,7 +72,7 @@ class StockContainer extends React.Component {
         </div>
         <div className="top-elements">
           <div className="portfolio-table box">
-              {this.state.stocks.length > 1 && this.state.portfolio.length > 1 ? <PortfolioTable stocks={this.state.stocks} portfolio={this.state.portfolio}/> : null}
+              {this.state.stocks.length >= 1 && this.state.portfolio.length >= 1 ? <PortfolioTable stocks={this.state.stocks} portfolio={this.state.portfolio} refreshPortfolio={this.fetchUserProfile}/> : null}
           </div>
           <div className="found-stock box">
               <StockSearch onStockSave={this.onStockSave} />
@@ -83,6 +83,18 @@ class StockContainer extends React.Component {
             {/* <StockTable stocks={this.state.stocks}/> */}
             {/* <-keep this, might need later  */}
         </div>
+        <footer id="footer">
+            <div id="footer-content">
+              <section>
+                
+              </section>
+              <section id="impressum">
+                <p>PIVTR © 2018 <a href="https://github.com/camiller4e">Campbell Miller</a> &
+                <a href="https://github.com/PWhittle86"> Peter Whittle</a> &
+                <a href="https://github.com/adriflorence"> Adri Florence</a></p>
+              </section>
+            </div>
+        </footer>
       </React.Fragment>
     )
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import SellPopUp from './SellPopUp.js';
+import BuyPopUp from './BuyPopUp.js';
 
 class PortfolioTable extends React.Component {
 
@@ -10,6 +11,7 @@ class PortfolioTable extends React.Component {
       stock_change: {},
       portfolio_prices: {},
       showSellPopUp: false,
+      showBuyPopUp: false,
       popupStock: undefined
     }
   }
@@ -22,19 +24,14 @@ class PortfolioTable extends React.Component {
 
     this.props.stocks.forEach((quote) => {
       priceObject[quote.symbol] = quote.latestPrice;
-    });
-
-    this.props.stocks.forEach((quote) => {
       changeObject[quote.symbol] = quote.changePercent;
-    })
+    });
 
     this.props.portfolio.forEach((stock) => {
       portfolioObject[stock.symbol] = stock.avgPrice;
     })
 
-    this.setState({stock_prices: priceObject});
-    this.setState({stock_change: changeObject});
-    this.setState({portfolio_prices: portfolioObject});
+    this.setState({stock_prices: priceObject, stock_change: changeObject, portfolio_prices: portfolioObject});
   }
 
   createStock = (quote) => {
@@ -89,16 +86,36 @@ class PortfolioTable extends React.Component {
     this.setState({showSellPopUp: !this.state.showSellPopUp, popupStock: stock})
   }
 
+  showBuyPopUp = (stock) => {
+    this.setState({showBuyPopUp: !this.state.showBuyPopUp, popupStock: stock})
+  }
+
+  whichColor = (stringToCheck) => {
+    if(stringToCheck.charAt(0) === "-") {
+      return {color: "#e91e63"}
+    } else {
+      return {color: "#4caf50"}
+    }
+  }
+
+  addHeart = (epic) => {
+    fetch(`http://localhost/favorites`, {
+      method: 'post',
+      body: {epic: epic}
+    });
+  }
+
   render() {
 
     const stockRow = this.props.portfolio.map((stock, index) => {
 
       return (
         <tr key={index}>
+          <td><button className="heart" onClick={()=> this.addHeart(stock.epic)}></button></td>
           <td className="ellipsis">{stock.name}</td>
           <td>{stock.epic}</td>
-          <td>${this.state.stock_prices[stock.epic]}</td>
-          <td>{this.state.stock_change[stock.epic]}</td>
+          <td>{this.state.stock_prices[stock.epic]}</td>
+          <td style={this.whichColor(`${this.state.stock_change[stock.epic]}`)}>{(parseFloat(`${this.state.stock_change[stock.epic]}`)*100).toFixed(3)}</td>
           <td>{stock.count}</td>
           <td>${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
           <td>${parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>
@@ -106,20 +123,18 @@ class PortfolioTable extends React.Component {
           {/* <td>{parseFloat(stock.avgChange).toFixed(2)}</td>
           <td>{parseFloat(stock.avgPrice).toFixed(2)}</td> */}
 
-          {/* <td>dd-mm-yy</td> */}
-          <td><button className="buy button" onClick={() => this.createStock(stock)}>buy</button></td>
+          <td><button className="buy button" onClick={() => this.showBuyPopUp(stock)}>buy</button></td>
           <td><button className="sell button" onClick={() => this.showSellPopUp(stock)}>sell</button></td>
         </tr>
       )
     });
-
-
 
     return (
       <section>
         <table className="stock-table" cellSpacing="0">
           <thead>
             <tr>
+              <th></th>
               <th className="ellipsis">Name</th>
               <th>Epic</th>
               <th>Current Price</th>
@@ -129,16 +144,16 @@ class PortfolioTable extends React.Component {
               <th>Total Book Cost</th>
               <th>Profit/Loss</th>
               {/* <th>Total Change</th> */}
-
-              {/* <th>Date (??)</th> */}
             </tr>
           </thead>
           <tbody>
-              { this.state.showSellPopUp ? <SellPopUp stock={this.state.popupStock} close={this.showSellPopUp}/> : undefined }
+              { this.state.showBuyPopUp ? <BuyPopUp stock={this.state.popupStock} close={this.showBuyPopUp} createStock={this.createStock}/> : undefined }
+              { this.state.showSellPopUp ? <SellPopUp stock={this.state.popupStock} close={this.showSellPopUp} refreshPortfolio={this.props.refreshPortfolio}/> : undefined }
               { stockRow }
               <tr></tr>
           </tbody>
           <tfoot>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>

@@ -16,8 +16,6 @@
 
 /* ROTATOR */
 
-
-
 .rotator {
   margin-bottom: 10px;
   height: 14px;
@@ -42,17 +40,27 @@
   margin-left: 20px;
 }
 
-/* @-webkit-keyframes rotator {
-    from {right: 0px;}
-    to {left: 100%;}
-} */
-
 @keyframes rotator {
     0%   { transform: translate(0, 0); }
     100% { transform: translate(-100%, 0); }
 }
 
 /* PORTFOLIO TABLE */
+
+.heart {
+  background-image: url('../images/heart.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20px;
+  width: 20px;
+  border: none;
+}
+
+.heart:hover, .heart.active {
+  background-image: url('../images/heart_hover.png');
+  cursor: pointer;
+}
 
 .stock-table tr {
   margin-bottom: 5px;
@@ -99,14 +107,14 @@
 
 
 /* SELL OPTIONS POP UP */
-
-#sell-box {
+.red-border { border: 3px #e91e63 solid; }
+.green-border { border: 3px #4caf50 solid; }
+.popup {
   background-color: rgb(255, 255, 255);
   outline: none;
   width: 478px;
   padding: 17px;
   border-radius: 5px;
-    border: 3px #e91e63 solid;
   text-align: center;
   position: fixed;
   left: 50%;
@@ -116,5 +124,40 @@
   overflow: hidden;
   z-index: 5500;
   animation: showSweetAlert 0.3s ease 0s 1 normal none running;
-  /* display: none; */
+}
+
+/* FOOTER */
+
+#footer {
+  margin-top: 30px;
+  background-color: #AFD3D3;
+  background-image: url('../images/footer.jpg');
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 300px;
+  padding: 20px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+#impressum {
+  margin-top: 280px;
+}
+
+#footer-content {
+  text-align: center;
+  vertical-align: bottom;
+  color: white;
+  font-size: 18px;
+}
+
+#footer-content a {
+  text-decoration: none;
+  color: white;
+}
+
+#footer-content a:hover {
+  text-decoration: underline;
 }

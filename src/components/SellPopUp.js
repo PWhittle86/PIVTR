@@ -4,11 +4,15 @@ class SellPopUp extends React.Component {
 
   state = {
     stockFromApi: undefined,
-    numberToSell: undefined
+    numberToSell: 0
   }
 
   componentDidMount(){
     this.fetchCurrentPrice();
+  }
+
+  componentWillUnmount(){
+    this.props.refreshPortfolio();
   }
 
   fetchCurrentPrice = () => {
@@ -26,10 +30,7 @@ class SellPopUp extends React.Component {
     fetch(`http://localhost:3001/stocks/${epic}/${numberToSell}`, {
         method: 'delete'
     })
-    .then(response => response.json())
-    .then(response => console.log(response));
-    console.log(this.props);
-    this.props.close();
+    .then( _ => this.props.close());
   }
 
   // onChange has the event by default
@@ -40,9 +41,13 @@ class SellPopUp extends React.Component {
 
   render(){
     return(
-      <section id="sell-box">
+      <section className="red-border popup">
         <h1> Sell {this.props.stock.name} stocks </h1>
-        <p> <input type="number" min="1" max={this.props.stock.count} placeholder={this.props.stock.count} id="number-box" onChange={this.updateNumber}></input> * USD { this.state.stockFromApi ? this.state.stockFromApi.latestPrice : undefined } </p>
+        <p> <input type="number"
+                   min="1" max={this.props.stock.count}
+                   id="number-box"
+                   onChange={this.updateNumber}>
+            </input> * USD { this.state.stockFromApi ? this.state.stockFromApi.latestPrice : undefined } </p>
         <button className="sell button" onClick={this.sellStock}>sell</button>
       </section>
     )
