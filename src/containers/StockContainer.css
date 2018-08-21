@@ -105,6 +105,14 @@
   border-bottom: 1px solid #B7174D;
 }
 
+.ellipsis {
+  cursor: pointer;
+}
+
+.ellipsis: hover {
+  
+}
+
 
 /* SELL OPTIONS POP UP */
 .red-border { border: 3px #e91e63 solid; }
