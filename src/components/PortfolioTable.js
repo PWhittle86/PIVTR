@@ -4,7 +4,7 @@ import BuyPopUp from './BuyPopUp.js';
 
 class PortfolioTable extends React.Component {
 
-  constructor(props){
+constructor(props){
     super(props);
     this.state = {
       stock_prices: {},
@@ -15,6 +15,10 @@ class PortfolioTable extends React.Component {
       popupStock: undefined
     }
   }
+
+sendStockUp(stock){
+      this.props.onStockSelect(stock)
+    }
 
   componentDidMount(){
 
@@ -112,7 +116,7 @@ class PortfolioTable extends React.Component {
       return (
         <tr key={index}>
           <td><button className="heart" onClick={()=> this.addHeart(stock.epic)}></button></td>
-          <td className="ellipsis">{stock.name}</td>
+          <td className="ellipsis" onClick={()=>this.sendStockUp(stock)}>{stock.name}</td>
           <td>{stock.epic}</td>
           <td>{this.state.stock_prices[stock.epic]}</td>
           <td style={this.whichColor(`${this.state.stock_change[stock.epic]}`)}>{(parseFloat(`${this.state.stock_change[stock.epic]}`)*100).toFixed(3)}</td>
@@ -167,7 +171,8 @@ class PortfolioTable extends React.Component {
         </table>
       </section>
     )
+
   }
-}
+
 
 export default PortfolioTable;
