@@ -9,7 +9,7 @@ class InfoChart extends React.Component {
     }
   }
 
-componentDidMount(){
+componentDidUpdate(){
   // the url below needs to change based on user input
   // generateChart should send info to change the symbol below[ie aapl]
   const epic = this.props.selectedStock.epic

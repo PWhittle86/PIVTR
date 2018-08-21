@@ -12,7 +12,7 @@ class StockContainer extends React.Component {
     this.state = {
       stocks: [],
       portfolio: [],
-      selectedStock: null
+      selectedStock: {epic: "aapl"}
 
     }
   }
@@ -88,14 +88,14 @@ class StockContainer extends React.Component {
           </div>
         </div>
         <div className="info-chart box">
-            {this.state.selectedStock?<InfoChart selectedStock={this.state.selectedStock}/>:undefined}
+            <InfoChart selectedStock={this.state.selectedStock}/>
             {/* <StockTable stocks={this.state.stocks}/> */}
             {/* <-keep this, might need later  */}
         </div>
         <footer id="footer">
             <div id="footer-content">
               <section>
-                
+
               </section>
               <section id="impressum">
                 <p>PIVTR © 2018 <a href="https://github.com/camiller4e">Campbell Miller</a> &
