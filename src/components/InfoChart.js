@@ -12,23 +12,23 @@ class InfoChart extends React.Component {
   }
 
 componentDidUpdate(){
-  // the url below needs to change based on user input
-  // generateChart should send info to change the symbol below[ie aapl]
-  const epic = this.props.selectedStock.epic
-  const time = this.state.time
-  fetch(`https://api.iextrading.com/1.0/stock/${epic}/chart/${time}`)
-  .then(response => response.json())
-  .then(shares => {
-    return shares.map((stock, index) => {
-      return(
-        {time: stock.label, price: stock.vwap}
-      )
-    })
-  }).then(data => this.setState({data}))
-}
-
-changeTime = (time) => {
-this.setState({time: time})
+//   // the url below needs to change based on user input
+//   // generateChart should send info to change the symbol below[ie aapl]
+//   const epic = this.props.selectedStock.epic
+//   const time = this.state.time
+//   fetch(`https://api.iextrading.com/1.0/stock/${epic}/chart/${time}`)
+//   .then(response => response.json())
+//   .then(shares => {
+//     return shares.map((stock, index) => {
+//       return(
+//         {time: stock.label, price: stock.vwap}
+//       )
+//     })
+//   }).then(data => this.setState({data}))
+// }
+//
+// changeTime = (time) => {
+// this.setState({time: time})
 }
 
 
