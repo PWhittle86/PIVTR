@@ -5,15 +5,18 @@ class InfoChart extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      data: []
+      data: [],
+      time: "1m"
     }
+
   }
 
 componentDidUpdate(){
   // the url below needs to change based on user input
   // generateChart should send info to change the symbol below[ie aapl]
   const epic = this.props.selectedStock.epic
-  fetch(`https://api.iextrading.com/1.0/stock/${epic}/chart/1m`)
+  const time = this.state.time
+  fetch(`https://api.iextrading.com/1.0/stock/${epic}/chart/${time}`)
   .then(response => response.json())
   .then(shares => {
     return shares.map((stock, index) => {
@@ -24,11 +27,22 @@ componentDidUpdate(){
   }).then(data => this.setState({data}))
 }
 
+changeTime = (time) => {
+this.setState({time: time})
+}
 
 
 render(){
 return(
   <React.Fragment>
+    <div className="time-periods">
+      <button onClick={()=>this.changeTime("1m")}>1M</button>
+      <button onClick={()=>this.changeTime("3m")}>3M</button>
+      <button onClick={()=>this.changeTime("6m")}>6M</button>
+      <button onClick={()=>this.changeTime("1y")}>1Y</button>
+      <button onClick={()=>this.changeTime("2y")}>2Y</button>
+      <button onClick={()=>this.changeTime("5y")}>5Y</button>
+    </div>
   <LineChart width={600} height={400} data={this.state.data}>
     <Line type="monotone" dataKey="price" stroke="#8884d8" />
     <CartesianGrid strokeDasharray="3 3" />
