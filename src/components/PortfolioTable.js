@@ -7,14 +7,17 @@ class PortfolioTable extends React.Component {
 
     }
 
-    this.generateChart = this.generateChart.bind(this);
+    // this.generateChart = this.generateChart.bind(this);
 
 }
+    sendStockUp(stock){
+      this.props.onStockSelect(stock)
+    }
 
-
-    generateChart() {
-      this.props.clickButton(this.selectedStock.symbol)}
-      // get the symbol of the stock which has been clicked, pass it in to the url which infochart fetches
+    // generateChart(stock) {
+    //   this.props.selectedStock.setState({selectedStock: stock})
+    //   // this.props.clickButton(stock.epic)}
+    //   // get the symbol of the stock which has been clicked, pass it in to the url which infochart fetches
 
 
     render(){
@@ -22,7 +25,7 @@ class PortfolioTable extends React.Component {
       const stockRow = this.props.portfolio.map((stock, index) => {
         return (
           <tr key={index}>
-            <td className="ellipsis" onClick={this.generateChart}>{stock.name}</td>
+            <td className="ellipsis" onClick={()=>this.sendStockUp(stock)}>{stock.name}</td>
             <td>{stock.epic}</td>
             <td>{parseFloat(stock.avgPrice).toFixed(3)}</td>
             <td>{parseFloat(stock.avgChange).toFixed(3)}</td>

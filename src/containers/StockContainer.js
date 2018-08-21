@@ -35,8 +35,7 @@ class StockContainer extends React.Component {
     .then(portfolio => this.setState({portfolio: portfolio}));
   }
 
-  onStockSelect = (event) => {
-    let stock = event.target
+  onStockSelect = (stock) => {
     this.setState({selectedStock: stock});
   }
 
@@ -79,14 +78,14 @@ class StockContainer extends React.Component {
         </div>
         <div className="top-elements">
           <div className="portfolio-table box">
-              <PortfolioTable portfolio={this.state.portfolio}/>
+              <PortfolioTable onStockSelect={this.onStockSelect} portfolio={this.state.portfolio}/>
           </div>
           <div className="found-stock box">
               <StockSearch onStockSave={this.onStockSave} />
           </div>
         </div>
         <div className="info-chart box">
-            <InfoChart/>
+            {this.state.selectedStock?<InfoChart selectedStock={this.state.selectedStock}/>:undefined}
             {/* <StockTable stocks={this.state.stocks}/> */}
             {/* <-keep this, might need later  */}
         </div>

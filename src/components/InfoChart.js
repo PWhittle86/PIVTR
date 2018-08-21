@@ -12,7 +12,8 @@ class InfoChart extends React.Component {
 componentDidMount(){
   // the url below needs to change based on user input
   // generateChart should send info to change the symbol below[ie aapl]
-  fetch(`https://api.iextrading.com/1.0/stock/aapl/chart/1m`)
+  const epic = this.props.selectedStock.epic
+  fetch(`https://api.iextrading.com/1.0/stock/${epic}/chart/1m`)
   .then(response => response.json())
   .then(shares => {
     return shares.map((stock, index) => {
