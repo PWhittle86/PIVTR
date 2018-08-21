@@ -4,7 +4,7 @@ import BuyPopUp from './BuyPopUp.js';
 
 class PortfolioTable extends React.Component {
 
-constructor(props){
+  constructor(props){
     super(props);
     this.state = {
       stock_prices: {},
@@ -16,9 +16,9 @@ constructor(props){
     }
   }
 
-sendStockUp(stock){
-      this.props.onStockSelect(stock)
-    }
+  sendStockUp(stock){
+    this.props.onStockSelect(stock)
+  }
 
   componentDidMount(){
 
@@ -51,11 +51,11 @@ sendStockUp(stock){
 
   saveStock = (stock) => {
     fetch(`http://localhost:3001/stocks`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(stock)
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(stock)
     })
     .then(response => response.json())
     .then(response => this.onStockSave(response));
@@ -70,7 +70,7 @@ sendStockUp(stock){
       if(index !== -1) {
         portfolio[index].count++;
         this.setState({ portfolio })
-      // new item, add it to portfolio without sending request to server
+        // new item, add it to portfolio without sending request to server
       } else {
         // create an object that matches the mongo schema
         const portfolioStock = {
@@ -107,6 +107,17 @@ sendStockUp(stock){
       method: 'post',
       body: {epic: epic}
     });
+  }
+
+  totalMarketValueCalculator = (portfolioStocks) => {
+
+      let totalValue = 0;
+
+      for(let stock of portfolioStocks){
+        let currentValue = this.state.stock_prices[stock.epic] * stock.count
+        totalValue += currentValue;
+      }
+      return totalValue;
   }
 
   render() {
@@ -151,10 +162,10 @@ sendStockUp(stock){
             </tr>
           </thead>
           <tbody>
-              { this.state.showBuyPopUp ? <BuyPopUp stock={this.state.popupStock} close={this.showBuyPopUp} createStock={this.createStock}/> : undefined }
-              { this.state.showSellPopUp ? <SellPopUp stock={this.state.popupStock} close={this.showSellPopUp} refreshPortfolio={this.props.refreshPortfolio}/> : undefined }
-              { stockRow }
-              <tr></tr>
+            { this.state.showBuyPopUp ? <BuyPopUp stock={this.state.popupStock} close={this.showBuyPopUp} createStock={this.createStock}/> : undefined }
+            { this.state.showSellPopUp ? <SellPopUp stock={this.state.popupStock} close={this.showSellPopUp} refreshPortfolio={this.props.refreshPortfolio}/> : undefined }
+            { stockRow }
+            <tr></tr>
           </tbody>
           <tfoot>
             <th></th>
@@ -163,9 +174,9 @@ sendStockUp(stock){
             <th></th>
             <th></th>
             <th></th>
-            <th>Overall Market Value</th>
-            <th>Overall Book Cost</th>
-            <th>Overall Profit</th>
+            <th>${this.totalMarketValueCalculator(this.props.portfolio)}</th>
+            <th>${}Total Book Cost</th>
+            <th>Total Profit</th>
             <th></th>
           </tfoot>
         </table>
@@ -173,6 +184,6 @@ sendStockUp(stock){
     )
 
   }
-
+}
 
 export default PortfolioTable;
