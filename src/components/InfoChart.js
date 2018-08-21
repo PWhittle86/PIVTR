@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 class InfoChart extends React.Component {
   constructor(props){
@@ -50,6 +50,7 @@ return(
     <CartesianGrid strokeDasharray="3 3" />
     <XAxis dataKey="time" />
     <YAxis/>
+    <Tooltip/>
   </LineChart>
   </React.Fragment>
 )}
