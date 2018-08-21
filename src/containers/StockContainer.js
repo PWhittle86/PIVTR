@@ -108,5 +108,4 @@ class StockContainer extends React.Component {
   }
 }
 
-
 export default StockContainer;
