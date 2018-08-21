@@ -14,6 +14,16 @@
   padding-right: 15px;
 }
 
+.lineChart {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 800px;
+  height: 800px;
+  background-color: #fff;
+}
+
 /* ROTATOR */
 
 .rotator {
@@ -111,10 +121,6 @@
   cursor: pointer;
 }
 
-.ellipsis: hover {
-
-}
-
 /* SELL OPTIONS POP UP */
 .red-border { border: 3px #e91e63 solid; }
 .green-border { border: 3px #4caf50 solid; }
@@ -152,6 +158,21 @@
   font-size: 14px;
 }
 
+/* INFOCHART */
+
+.time {
+  box-shadow: 0 2px 2px 0 rgba(233, 30, 99, 0.14),
+              0 3px 1px -2px rgba(233, 30, 99, 0.2),
+              0 1px 5px 0 rgba(233, 30, 99, 0.12);
+  background-color: lightpink;
+  border-bottom: 3px solid orange;
+}
+
+.time:hover {
+
+  border-bottom: 1px solid orange;
+}
+
 /* FOOTER */
 
 #footer {
@@ -161,6 +182,14 @@
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.mission-statement {
+
+  float: right;
+
 }
 
 #footer-content {
@@ -178,6 +207,9 @@
 #mission-statement {
   margin: 10px auto 50px;
   font-size: 18px;
+  width: 60%;
+  float: right;
+  padding-right: 50px;
 }
 
 #impressum {

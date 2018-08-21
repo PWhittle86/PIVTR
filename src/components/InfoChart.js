@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 class InfoChart extends React.Component {
   constructor(props){
@@ -33,21 +33,25 @@ this.setState({time: time})
 
 
 render(){
+  const epicCAPS = this.props.selectedStock.epic.toUpperCase();
 return(
   <React.Fragment>
     <div className="time-periods">
-      <button onClick={()=>this.changeTime("1m")}>1M</button>
-      <button onClick={()=>this.changeTime("3m")}>3M</button>
-      <button onClick={()=>this.changeTime("6m")}>6M</button>
-      <button onClick={()=>this.changeTime("1y")}>1Y</button>
-      <button onClick={()=>this.changeTime("2y")}>2Y</button>
-      <button onClick={()=>this.changeTime("5y")}>5Y</button>
+      <button className="time button" onClick={()=>this.changeTime("1m")}>1M</button>
+      <button className="time button" onClick={()=>this.changeTime("3m")}>3M</button>
+      <button className="time button" onClick={()=>this.changeTime("6m")}>6M</button>
+      <button className="time button" onClick={()=>this.changeTime("1y")}>1Y</button>
+      <button className="time button" onClick={()=>this.changeTime("2y")}>2Y</button>
+      <button className="time button" onClick={()=>this.changeTime("5y")}>5Y</button>
     </div>
-  <LineChart width={600} height={400} data={this.state.data}>
-    <Line type="monotone" dataKey="price" stroke="#8884d8" />
+    <p>{epicCAPS}</p>
+  <LineChart className="lineChart" width={600} height={400} data={this.state.data}>
+    <Line type="monotone" dot={false} dataKey="price" stroke="#8884d8" strokeWidth={2} />
     <CartesianGrid strokeDasharray="3 3" />
     <XAxis dataKey="time" />
     <YAxis/>
+    <Legend />
+    <Tooltip />
   </LineChart>
   </React.Fragment>
 )}

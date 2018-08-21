@@ -33,6 +33,10 @@ th {
   padding-right: 30px;
 }
 
+li {
+  list-style: none;
+}
+
 .ellipsis {
   max-width: 260px;
   text-overflow: ellipsis;
