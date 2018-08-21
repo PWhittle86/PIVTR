@@ -33,24 +33,24 @@ class InfoCompany extends React.Component{
     const newsArticles = this.state.companyNews.map((newsItem, index) => {
       return(
         <section>
-        <h3>{newsItem.headline}</h3>
-        <p>{newsItem.summary}</p>
-        <p>Source: {newsItem.url}</p>
-      </section>
+          <h4>{newsItem.headline}</h4>
+          <p>{newsItem.summary}</p>
+          <p>Source: {newsItem.url}</p>
+        </section>
       )
     })
 
     return(
-      <section>
-      <ul className="companyInfo">
-        <li>{this.state.companyInfo.companyName}</li>
-        <li>Industry: {this.state.companyInfo.industry}</li>
-        <li>Description: {this.state.companyInfo.description}</li>
-        <li>Exchange: {this.state.companyInfo.exchange}</li>
-        <li>{this.state.companyInfo.website}</li>
-      </ul>
-      {newsArticles}
-    </section>
+      <section className="companyInfo">
+        <h3>{this.state.companyInfo.companyName}</h3>
+        <ul>
+          <li>{this.state.companyInfo.industry}</li>
+          <li>{this.state.companyInfo.description}</li>
+          <li>{this.state.companyInfo.exchange}</li>
+          <li>{this.state.companyInfo.website}</li>
+        </ul>
+        {newsArticles}
+      </section>
     )
   }
 }
