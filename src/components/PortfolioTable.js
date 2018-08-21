@@ -98,7 +98,16 @@ class PortfolioTable extends React.Component {
     }
   }
 
-  addHeart = (epic) => {
+  updateHeart = () => {
+  let portfolio = this.props.portfolio;
+    for(let stock of portfolio) {
+      if(stock.favorite) {
+
+      }
+    }
+  }
+
+  sendFavourite = (epic) => {
     fetch(`http://localhost/favorites`, {
       method: 'post',
       body: {epic: epic}
@@ -115,7 +124,7 @@ class PortfolioTable extends React.Component {
           <td className="ellipsis">{stock.name}</td>
           <td>{stock.epic}</td>
           <td>{this.state.stock_prices[stock.epic]}</td>
-          <td style={this.whichColor(`${this.state.stock_change[stock.epic]}`)}>{(parseFloat(`${this.state.stock_change[stock.epic]}`)*100).toFixed(3)}</td>
+          <td style={this.whichColor(`${this.state.stock_change[stock.epic]}`)}>{this.state.stock_change[stock.epic]}</td>
           <td>{stock.count}</td>
           <td>${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
           <td>${parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>

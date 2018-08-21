@@ -75,10 +75,21 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
         res.status(500);
         res.send();
       } else {
-        // descending order based on number of shares held
-        data = data.sort((a,b) => a.count - b.count);
-        const convertedResult = convertMongoGroupToStockObject(data);
-        res.json(convertedResult);
+        // if epic appears in the favorite collection
+        // add 'favorite' field to aggregated object
+        db.collection('favorites').find().toArray((error, favorites) => {
+          if(error) {
+            console.log(error);
+          } else {
+            data.forEach((item) => {
+              const isFavorite = favorites.some(fav => fav.epic === item._id);
+              if(isFavorite) item.favorite = true;
+            });
+            data = data.sort((a,b) => a.count - b.count);
+            const convertedResult = convertMongoGroupToStockObject(data);
+            res.json(convertedResult);
+          }
+        })
       }
     });
   });
@@ -108,7 +119,8 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
         name: data.name,
         count: data.count,
         avgChange: data.avgChange,
-        avgPrice: data.avgPrice
+        avgPrice: data.avgPrice,
+        favorite: data.favorite ? true : false
       }
     });
   }
@@ -136,6 +148,38 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
         }
       });
   });
+
+  // FAVOURITES
+
+  app.get('/favorites', (req, res) => {
+        db.collection('favorites').find().toArray((error, data) => {
+          if(error) {
+            console.log(error);
+            res.status(500);
+            res.send([]);
+          } else {
+            res.status(200);
+            res.send(JSON.stringify(data));
+          }
+        })
+      });
+
+    app.post('/favorites', (req, res) => {
+      const epic = req.body;
+      db.collection('favorites').insertOne({epic: epic}, (error, data) => {
+        if(error) {
+          console.log(error);
+          res.status(500);
+          res.send(error);
+        } else {
+          console.log(data);
+          res.status(200);
+          res.send(epic);
+        }
+      })
+    });
+
+
 
 app.listen(3001, function(){
   console.log("App running");
