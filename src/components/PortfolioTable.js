@@ -110,7 +110,6 @@ class PortfolioTable extends React.Component {
   }
 
   totalMarketValueCalculator = (portfolioStocks) => {
-
       let totalValue = 0;
 
       for(let stock of portfolioStocks){
@@ -120,6 +119,16 @@ class PortfolioTable extends React.Component {
       return totalValue;
   }
 
+  totalBookCostCalculator = (portfolioStocks) => {
+    let totalValue = 0;
+
+    for(let stock of portfolioStocks){
+      let currentValue = stock.avgPrice * stock.count
+      totalValue += currentValue;
+    }
+    return parseFloat(totalValue).toFixed(2);
+  }
+
   render() {
 
     const stockRow = this.props.portfolio.map((stock, index) => {
@@ -127,14 +136,14 @@ class PortfolioTable extends React.Component {
       return (
         <tr key={index}>
           <td><button className="heart" onClick={()=> this.addHeart(stock.epic)}></button></td>
-          <td className="ellipsis" onClick={()=>this.sendStockUp(stock)}>{stock.name}</td>
-          <td>{stock.epic}</td>
-          <td>{this.state.stock_prices[stock.epic]}</td>
-          <td style={this.whichColor(`${this.state.stock_change[stock.epic]}`)}>{(parseFloat(`${this.state.stock_change[stock.epic]}`)*100).toFixed(3)}</td>
-          <td>{stock.count}</td>
-          <td>${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
-          <td>${parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>
-          <td>${parseFloat((this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)).toFixed(2)}</td>
+          <td className= "ellipsis" onClick={()=>this.sendStockUp(stock)}>{stock.name}</td>
+          <td className= "epic">{stock.epic}</td>
+          <td className= "currentPrice">{this.state.stock_prices[stock.epic]}</td>
+          <td className= "changePercent" style={this.whichColor(`${this.state.stock_change[stock.epic]}`)}>{(parseFloat(`${this.state.stock_change[stock.epic]}`)*100).toFixed(3)}</td>
+          <td className= "sharesHeld">{stock.count}</td>
+          <td className= "totalMarketValue">${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
+          <td className= "totalBookCost">${parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>
+          <td className= "totalProfitLoss">${parseFloat((this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)).toFixed(2)}</td>
           {/* <td>{parseFloat(stock.avgChange).toFixed(2)}</td>
           <td>{parseFloat(stock.avgPrice).toFixed(2)}</td> */}
 
@@ -142,7 +151,7 @@ class PortfolioTable extends React.Component {
           <td><button className="sell button" onClick={() => this.showSellPopUp(stock)}>sell</button></td>
         </tr>
       )
-    });
+    })
 
     return (
       <section>
@@ -175,8 +184,8 @@ class PortfolioTable extends React.Component {
             <th></th>
             <th></th>
             <th>${this.totalMarketValueCalculator(this.props.portfolio)}</th>
-            <th>${this.totalBookCostCalculator}Total Book Cost</th>
-            <th>${}Total Profit</th>
+            <th>${this.totalBookCostCalculator(this.props.portfolio)}</th>
+            <th>${parseFloat((this.totalMarketValueCalculator(this.props.portfolio)) - (this.totalBookCostCalculator(this.props.portfolio))).toFixed(2)}</th>
             <th></th>
           </tfoot>
         </table>
