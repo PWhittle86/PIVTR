@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 class InfoChart extends React.Component {
   constructor(props){
@@ -45,11 +45,12 @@ return(
       <button onClick={()=>this.changeTime("5y")}>5Y</button>
     </div>
     <p>{epicCAPS}</p>
-  <LineChart width={600} height={400} data={this.state.data}>
-    <Line type="monotone" dataKey="price" stroke="#8884d8" />
+  <LineChart className="lineChart" width={600} height={400} data={this.state.data}>
+    <Line type="monotone" dot={true} dataKey="price" stroke="#8884d8" strokeWidth={2} activeDot={{r: 6}} />
     <CartesianGrid strokeDasharray="3 3" />
     <XAxis dataKey="time" />
     <YAxis/>
+    <Legend />
     <Tooltip/>
   </LineChart>
   </React.Fragment>
