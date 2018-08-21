@@ -86,12 +86,13 @@ class StockContainer extends React.Component {
         </div>
         <div className="info-chart box">
             <InfoChart selectedStock={this.state.selectedStock}/>
+            <div className="info_news">
+              <InfoCompany selectedStock={this.state.selectedStock}/>
+            </div>
             {/* <StockTable stocks={this.state.stocks}/> */}
             {/* <-keep this, might need later  */}
         </div>
-        <div className="info_news">
-          <InfoCompany selectedStock={this.state.selectedStock}/>
-        </div>
+
         <footer id="footer">
             <div id="footer-content">
               <section>

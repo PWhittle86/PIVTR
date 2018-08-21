@@ -5,29 +5,42 @@ class InfoCompany extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      companyInfo: {}
+      companyInfo: {},
+      companyNews: []
     }
   }
 
-  componentDidUpdate(){
-    const epic = this.props.selectedStock.epic
+  componentDidUpdate(prevProps, prevState){
+    console.log(prevProps.selectedStock.epic, this.props.selectedStock.epic);
+    // debugger;
+    if(prevProps.selectedStock.epic !== this.props.selectedStock.epic){
+      const epic = this.props.selectedStock.epic
 
-    fetch(`https://api.iextrading.com/1.0/stock/${epic}/company`)
-    .then(response => response.json())
-    .then(companyInfo => this.setState({companyInfo: companyInfo}))
+      fetch(`https://api.iextrading.com/1.0/stock/${epic}/news`)
+      .then(response => response.json())
+      .then(companyNews => this.setState({companyNews: companyNews}))
+    }
+
+
+
+    // fetch(`https://api.iextrading.com/1.0/stock/${epic}/company`)
+    // .then(response => response.json())
+    // .then(companyInfo => this.setState({companyInfo: companyInfo}))
+
+
   }
 
   render(){
 
     return(
       <React.Fragment>
-      <li>
-        <ul>{this.state.companyInfo.companyName}</ul>
-        <ul>Industry: {this.state.companyInfo.industry}</ul>
-        <ul>Website: {this.state.companyInfo.website}</ul>
-        <ul>Description: {this.state.companyInfo.description}</ul>
-        <ul>Exchange: {this.state.companyInfo.exchange}</ul>
-      </li>
+      <ul className="companyInfo">
+        <li>{this.state.companyInfo.companyName}</li>
+        <li>Industry: {this.state.companyInfo.industry}</li>
+        <li>Description: {this.state.companyInfo.description}</li>
+        <li>Exchange: {this.state.companyInfo.exchange}</li>
+        <li>{this.state.companyInfo.website}</li>
+      </ul>
       </React.Fragment>
     )
   }
