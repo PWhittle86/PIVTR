@@ -77,7 +77,7 @@ class StockContainer extends React.Component {
         </div>
         <div className="top-elements">
           <div className="portfolio-table box">
-              {this.state.stocks.length >= 1 && this.state.portfolio.length >= 1 ? <PortfolioTable onStockSelect={this.onStockSelect} stocks={this.state.stocks} portfolio={this.state.portfolio} refreshPortfolio={this.fetchUserProfile}/> : null};
+              {this.state.stocks.length >= 1 && this.state.portfolio.length >= 1 ? <PortfolioTable onStockSelect={this.onStockSelect} stocks={this.state.stocks} portfolio={this.state.portfolio} refreshPortfolio={this.fetchUserProfile}/> : null}
           </div>
           <div className="found-stock box">
               <StockSearch onStockSave={this.onStockSave} />

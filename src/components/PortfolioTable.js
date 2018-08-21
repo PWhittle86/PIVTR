@@ -81,7 +81,7 @@ class PortfolioTable extends React.Component {
           avgPrice: stock.price
         }
         //spread operator https://davidwalsh.name/spread-operator
-        this.setState({ portfolio: [...this.state.portfolio, portfolioStock] });
+        this.setState({ portfolio: [...this.state.portfolio, portfolioStock] })
       }
     }
   }
@@ -111,7 +111,6 @@ class PortfolioTable extends React.Component {
 
   totalMarketValueCalculator = (portfolioStocks) => {
       let totalValue = 0;
-
       for(let stock of portfolioStocks){
         let currentValue = this.state.stock_prices[stock.epic] * stock.count
         totalValue += currentValue;
@@ -121,7 +120,6 @@ class PortfolioTable extends React.Component {
 
   totalBookCostCalculator = (portfolioStocks) => {
     let totalValue = 0;
-
     for(let stock of portfolioStocks){
       let currentValue = stock.avgPrice * stock.count
       totalValue += currentValue;
@@ -195,4 +193,4 @@ class PortfolioTable extends React.Component {
   }
 }
 
-export default PortfolioTable;
+export default PortfolioTable
