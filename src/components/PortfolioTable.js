@@ -141,7 +141,7 @@ class PortfolioTable extends React.Component {
           <td className= "sharesHeld">{stock.count}</td>
           <td className= "totalMarketValue">${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
           <td className= "totalBookCost">${parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>
-          <td className= "totalProfitLoss">${parseFloat((this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)).toFixed(2)}</td>
+          <td className= "totalProfitLoss" style={this.whichColor(`${(this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)}`)}>${parseFloat((this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)).toFixed(2)}</td>
           {/* <td>{parseFloat(stock.avgChange).toFixed(2)}</td>
           <td>{parseFloat(stock.avgPrice).toFixed(2)}</td> */}
 
@@ -183,7 +183,7 @@ class PortfolioTable extends React.Component {
             <th></th>
             <th>${this.totalMarketValueCalculator(this.props.portfolio)}</th>
             <th>${this.totalBookCostCalculator(this.props.portfolio)}</th>
-            <th>${parseFloat((this.totalMarketValueCalculator(this.props.portfolio)) - (this.totalBookCostCalculator(this.props.portfolio))).toFixed(2)}</th>
+            <th style={this.whichColor(`${parseFloat((this.totalMarketValueCalculator(this.props.portfolio)) - (this.totalBookCostCalculator(this.props.portfolio))).toFixed(2)}`)}>${parseFloat((this.totalMarketValueCalculator(this.props.portfolio)) - (this.totalBookCostCalculator(this.props.portfolio))).toFixed(2)}</th>
             <th></th>
           </tfoot>
         </table>
