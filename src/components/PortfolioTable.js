@@ -174,5 +174,7 @@ sendStockUp(stock){
 
   }
 
+}
+
 
 export default PortfolioTable;
