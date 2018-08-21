@@ -94,9 +94,7 @@ class StockContainer extends React.Component {
 
               </section>
               <section id="impressum">
-                <p>PIVTR © 2018 <a href="https://github.com/camiller4e">Campbell Miller</a> &
-                <a href="https://github.com/PWhittle86"> Peter Whittle</a> &
-                <a href="https://github.com/adriflorence"> Adri Florence</a></p>
+                <p>PIVTR © 2018 <a href="https://github.com/camiller4e">Campbell Miller</a> & <a href="https://github.com/PWhittle86">Peter Whittle</a> & <a href="https://github.com/adriflorence">Adri Florence</a></p>
               </section>
             </div>
         </footer>
