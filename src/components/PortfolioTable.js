@@ -175,8 +175,8 @@ class PortfolioTable extends React.Component {
             <th></th>
             <th></th>
             <th>${this.totalMarketValueCalculator(this.props.portfolio)}</th>
-            <th>${}Total Book Cost</th>
-            <th>Total Profit</th>
+            <th>${this.totalBookCostCalculator}Total Book Cost</th>
+            <th>${}Total Profit</th>
             <th></th>
           </tfoot>
         </table>
