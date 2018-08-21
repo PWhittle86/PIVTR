@@ -8,18 +8,18 @@ class InfoChart extends React.Component {
       data: [],
       time: "1m"
     }
+    this.changeTime = this.changeTime.bind(this);
+  }
 
+  changeTime = (time) => {
+    this.setState({time: time})
   }
 
   componentDidUpdate(prevProps, prevState){
-    if(prevProps.selectedStock.epic !== this.props.selectedStock.epic){
+    if(prevProps.selectedStock.epic !== this.props.selectedStock.epic || prevState.time !== this.state.time){
 
       const epic = this.props.selectedStock.epic
       const time = this.state.time
-
-      const changeTime = (time) => {
-        this.setState({time: time})
-      }
 
       fetch(`https://api.iextrading.com/1.0/stock/${epic}/chart/${time}`)
       .then(response => response.json())
@@ -30,12 +30,13 @@ class InfoChart extends React.Component {
           )
         })
       }).then(data => this.setState({data}))
-
     }
   }
 
   render(){
+
     const epicCAPS = this.props.selectedStock.epic.toUpperCase();
+
     return(
       <React.Fragment>
         <div className="time-periods">
