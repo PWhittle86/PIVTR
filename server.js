@@ -166,13 +166,30 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
 
     app.post('/favorites', (req, res) => {
       const epic = req.body;
-      db.collection('favorites').insertOne({epic: epic}, (error, data) => {
+      console.log(epic);
+      db.collection('favorites').insertOne(epic, (error, data) => {
         if(error) {
           console.log(error);
           res.status(500);
           res.send(error);
         } else {
-          console.log(data);
+          // console.log(data);
+          res.status(200);
+          res.send(epic);
+        }
+      })
+    });
+
+    app.delete('/favorites/:epic', (req, res) => {
+      const epic = req.params.epic;
+      console.log("delete", epic);
+      db.collection('favorites').deleteMany({epic: epic}, (error, data) => {
+        if(error) {
+          console.log(error);
+          res.status(500);
+          res.send(error);
+        } else {
+          // console.log(data);
           res.status(200);
           res.send(epic);
         }
