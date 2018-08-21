@@ -1,14 +1,53 @@
-#app-header {
+body {
+  font-family: Raleway;
+  /* can write padding/margin as oneliner */
+  margin: 5px 25px 0px 25px;
+  padding: 30px 30px 0px 30px;
+  background-color: #eee;
+}
 
+#app-header {
+  background-image: url('./images/barchart.png');
+  /* background-position: bottom; */
+  background-size: contain;
+  background-repeat: no-repeat;
   font-family: Yanone Kaffeesatz;
   font-size: 80px;
   text-align: center;
-  margin-top: 20px;
-
 }
 
-body {
+#app-header h1 {
+  margin: 0;
+}
 
-  font-family: Raleway;
+/* Removes blue outline from buttons in Chrome */
+button:focus {
+  outline: 0;
+}
 
+table {
+  border: none;
+}
+
+th {
+  text-align: left;
+  padding-right: 30px;
+}
+
+.ellipsis {
+  max-width: 260px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#stock-table-search {
+  display: flex;
+}
+
+.box{
+  padding: 20px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  background-color: #fff;
+  border-radius: 6px;
 }
