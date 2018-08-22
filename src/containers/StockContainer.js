@@ -122,6 +122,7 @@ class StockContainer extends React.Component {
                               switchFavourite={this.switchFavourite}
                               /> : null}
         </div>
+        <div className = "infoContainer">
         <div className="info-chart box">
             <InfoChart selectedStock={this.state.selectedStock}/>
             <div className="info_news">
@@ -130,7 +131,7 @@ class StockContainer extends React.Component {
             {/* <StockTable stocks={this.state.stocks}/> */}
             {/* <-keep this, might need later  */}
         </div>
-
+        </div>
         <footer id="footer">
             <div id="footer-content">
               <section id="footer-image">

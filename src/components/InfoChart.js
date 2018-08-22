@@ -56,6 +56,7 @@ class InfoChart extends React.Component {
           <Legend />
           <Tooltip />
         </LineChart>
+        
       </React.Fragment>
     )}
   }
