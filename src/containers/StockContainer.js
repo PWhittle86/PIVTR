@@ -121,7 +121,7 @@ class StockContainer extends React.Component {
         </section>
 
         <Rotator stocks={this.state.stocks}/>
-        <div className="box">
+        <div className="slogan box">
               <h2>Don't be a limiter. Be a <b>PIVTR</b>.</h2>
         </div>
 
@@ -134,7 +134,6 @@ class StockContainer extends React.Component {
               <StockSearch onStockSave={this.onStockSave} portfolio={this.state.portfolio}/>
           </div>
         </div>
-      </div>
 
       <div className="portfolio-table box">
         {this.state.stocks.length >= 1 && this.state.portfolio.length >= 1 ?
@@ -177,7 +176,7 @@ class StockContainer extends React.Component {
                     <a href="https://github.com/adriflorence">Adri Florence</a>
                     <a href="#"><img src="/images/barchart.png"></img></a></p>
                   </section>
-              
+
               </section>
               </div>
             </div>

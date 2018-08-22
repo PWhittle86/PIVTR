@@ -33,7 +33,7 @@ class StockSearch extends React.Component {
           // need to persist SyntheticEvent https://reactjs.org/docs/events.html -> React event pooling
           onChange={(e) => { e.persist(); this.onSearchTextChange(e) }}
           onKeyDown={this.onKeyDown}/>
-        { this.state.result ? <DisplayInfo quote={this.state.result} onStockSave={this.props.onStockSave} portfolio={this.props.portfolio}/> : undefined }
+        { this.state.result ? <DisplayInfo quote={this.state.result} portfolio={this.props.portfolio}/> : undefined }
       </div>
 
     )

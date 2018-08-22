@@ -11,12 +11,13 @@ button:focus {
   outline: 0;
 }
 
-/* table {
+table {
   border: none;
-} */
+  text-align: center;
+}
 
 th {
-  text-align: left;
+  text-align: center;
   font-size: larger;
 }
 

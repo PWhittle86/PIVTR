@@ -19,18 +19,20 @@ class StockPieChart extends React.Component {
     const legendStyle = {
       top: 40,
       left: '460px',
-      fontSize: '25px'
+      fontSize: '25px',
+      overflow: 'auto',
+      height: '400px'
     }
 
   	return (
-    	<PieChart width={800} height={440}>
+    	<PieChart width={700} height={400}>
         <Legend layout="vertical" wrapperStyle={legendStyle}></Legend>
         <Pie
           data={data}
           cx={220}
-          cy={220}
+          cy={200}
           labelLine={true}
-          outerRadius={180}
+          outerRadius={150}
           fill="#8884d8" label>
         	{	data.map((entry, index) => <Cell fill={this.colors[index]}/>) }
         </Pie>
