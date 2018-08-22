@@ -75,6 +75,29 @@ button#notifications span {
   top: 0px;
 }
 
+.infoContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.info-chart{
+  text-align: center;
+}
+
+.info_news {
+  padding-top: 38px;
+  padding-right: 20px;
+  width: 400px;
+  height: 450px;
+  overflow: auto;
+  /* background-color: #F2F2F2; */
+}
+
+#company-industry{
+  font-weight: bold;
+}
+
 /* ROTATOR */
 
 .rotator {
@@ -255,10 +278,17 @@ button#notifications span {
 #footer {
   margin-top: 30px;
   background-color: #AFD3D3;
-  padding: 20px 20px 0px 20px;
+  padding: 0px 20px 0px 20px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  /* margin-bottom: 5px; */
+  width: 100%;
+}
+
+.mission-statement {
+  display: flex;
+  float: right;
 }
 
 #footer-content {
@@ -266,6 +296,7 @@ button#notifications span {
   vertical-align: bottom;
   color: white;
   display: flex;
+
 }
 
 #footer-image img{
@@ -273,12 +304,18 @@ button#notifications span {
   height: 300px;
 }
 
+.text-and-impressum {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 #mission-statement {
   margin: 10px auto 0px;
   font-size: 18px;
-  width: 60%;
+  width: 87%;
   float: right;
-  padding-right: 50px;
 }
 
 #impressum {
@@ -306,4 +343,9 @@ button#notifications span {
   margin-bottom: -10px;
   margin-left: 10px;
   height: 50px;
+}
+
+.intro {
+  text-align: center;
+  font-size: 20px;
 }
