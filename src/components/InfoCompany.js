@@ -52,7 +52,6 @@ class InfoCompany extends React.Component{
         <p>{this.state.companyInfo.description}</p>
         <a href={this.state.companyInfo.website}>{this.state.companyInfo.website}</a>
         <break/>
-        <h2>Company News</h2>
         {newsArticles}
       </section>
     )
