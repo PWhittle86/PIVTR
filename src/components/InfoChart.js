@@ -15,6 +15,21 @@ class InfoChart extends React.Component {
     this.setState({time: time})
   }
 
+  componentDidMount(){
+      const epic = this.props.selectedStock.epic
+      const time = this.state.time
+
+      fetch(`https://api.iextrading.com/1.0/stock/${epic}/chart/${time}`)
+      .then(response => response.json())
+      .then(shares => {
+        return shares.map((stock, index) => {
+          return(
+            {time: stock.label, price: stock.vwap}
+          )
+        })
+      }).then(data => this.setState({data}))
+    }
+
   componentDidUpdate(prevProps, prevState){
     if(prevProps.selectedStock.epic !== this.props.selectedStock.epic || prevState.time !== this.state.time){
 

@@ -11,6 +11,24 @@ class InfoCompany extends React.Component{
     }
   }
 
+  componentDidMount(){
+
+      const epic = this.props.selectedStock.epic
+
+      fetch(`https://api.iextrading.com/1.0/stock/${epic}/company`)
+      .then(response => response.json())
+      .then(companyInfo => this.setState({companyInfo: companyInfo}))
+
+      fetch(`https://api.iextrading.com/1.0/stock/${epic}/news`)
+     .then(response => response.json())
+     .then(companyNews => this.setState({companyNews: companyNews}))
+
+     fetch(`https://api.iextrading.com/1.0/stock/${epic}/logo`)
+    .then(response => response.json())
+    .then(companyLogo => this.setState({companyLogo: companyLogo}))
+  }
+
+
   componentDidUpdate(prevProps, prevState){
 
     if(prevProps.selectedStock.epic !== this.props.selectedStock.epic){
