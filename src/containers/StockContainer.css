@@ -188,6 +188,7 @@ button#notifications span {
 .green-border { border: 3px #4caf50 solid; }
 .popup {
   background-color: rgb(255, 255, 255);
+  font-size: 20px;
   outline: none;
   width: 478px;
   padding: 17px;
@@ -201,6 +202,14 @@ button#notifications span {
   overflow: hidden;
   z-index: 5500;
   animation: showSweetAlert 0.3s ease 0s 1 normal none running;
+}
+
+.popup input {
+  width: 60px;
+  height: 30px;
+  padding: 5px;
+  font-size: 30px;
+  text-align: right;
 }
 
 /* SEARCH BOX */
@@ -219,6 +228,12 @@ button#notifications span {
   height: 36px;
   width: -webkit-fill-available;
   font-size: 14px;
+}
+
+.stock-search input[type=number] {
+    height: 36px;
+    width: 40px;
+    font-size: 14px;
 }
 
 /* INFOCHART */
@@ -259,7 +274,7 @@ button#notifications span {
 }
 
 #mission-statement {
-  margin: 10px auto 50px;
+  margin: 10px auto 0px;
   font-size: 18px;
   width: 60%;
   float: right;
@@ -267,12 +282,9 @@ button#notifications span {
 }
 
 #impressum {
-  position: fixed;
   bottom: 0;
   background-color: #AFD3D3;
-  width: 60%;
   font-size: 20px;
-  margin-left: 300px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
@@ -280,6 +292,10 @@ button#notifications span {
 #impressum a {
   text-decoration: none;
   color: white;
+}
+
+#impressum p {
+  margin: 0;
 }
 
 #impressum a:hover {

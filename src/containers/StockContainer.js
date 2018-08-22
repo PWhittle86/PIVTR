@@ -58,7 +58,8 @@ class StockContainer extends React.Component {
           name: stock.name,
           count: 1,
           avgChange: stock.change,
-          avgPrice: stock.price
+          avgPrice: stock.price,
+          favorite: false
         }
         //spread operator https://davidwalsh.name/spread-operator
         this.setState({ portfolio: [...this.state.portfolio, portfolioStock] });
@@ -66,6 +67,7 @@ class StockContainer extends React.Component {
     }
   }
 
+  // functionality for favourites
   sendFavourite = (epic) => {
     fetch(`http://localhost:3001/favorites`, {
       method: 'post',
@@ -119,7 +121,7 @@ class StockContainer extends React.Component {
 
         <Rotator stocks={this.state.stocks}/>
         <div className="box">
-              <p>Don't stick in the mud of the beaten path you've walked before. Don't be a limiter. Be a <b>PIVTR</b>.</p>
+              <h2>Don't be a limiter. Be a <b>PIVTR</b>.</h2>
         </div>
 
         <div className="top-elements">
@@ -128,7 +130,7 @@ class StockContainer extends React.Component {
           </div>
 
           <div className="stock-search box">
-              <StockSearch onStockSave={this.onStockSave} />
+              <StockSearch onStockSave={this.onStockSave} portfolio={this.state.portfolio}/>
           </div>
         </div>
 
@@ -143,7 +145,7 @@ class StockContainer extends React.Component {
         </div>
 
         <div className="info-chart box">
-            {/* <InfoChart selectedStock={this.state.selectedStock}/> */}
+            <InfoChart selectedStock={this.state.selectedStock}/>
             <div className="info_news">
               <InfoCompany selectedStock={this.state.selectedStock}/>
             </div>
@@ -162,14 +164,15 @@ class StockContainer extends React.Component {
                   <p>It means we're a forward-thinking anti-conglomerate who work tirelessly to incubate cutting-edge paradigms and above all else: synergise backwards overflow.</p>
                   <p>What this means for your personal portfolio is that you can be sure we won't just repurpose out-of-the-box methodologies. We'll evolve robust partnerships. Seize ubiquitous communities. We will <i>innovate transparent e-tailers.</i></p>
 
-              </section>
-              <section id="impressum">
-                <p>PIVTR © 2018 <a href="https://github.com/camiller4e">Campbell Miller</a> &
-                <a href="https://github.com/PWhittle86">Peter Whittle</a> &
-                <a href="https://github.com/adriflorence">Adri Florence</a>
-                <a href="#"><img src="/images/barchart.png"></img></a></p>
+                  <section id="impressum">
+                    <p>PIVTR © 2018 <a href="https://github.com/camiller4e">Campbell Miller</a> &
+                    <a href="https://github.com/PWhittle86">Peter Whittle</a> &
+                    <a href="https://github.com/adriflorence">Adri Florence</a>
+                    <a href="#"><img src="/images/barchart.png"></img></a></p>
 
+                  </section>
               </section>
+
             </div>
         </footer>
       </React.Fragment>
