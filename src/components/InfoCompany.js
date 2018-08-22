@@ -36,18 +36,6 @@ class InfoCompany extends React.Component{
     })
 
     return(
-<<<<<<< HEAD
-      <section className="companyInfo">
-        <h3>{this.state.companyInfo.companyName}</h3>
-        <ul>
-          <li>{this.state.companyInfo.industry}</li>
-          <li>{this.state.companyInfo.description}</li>
-          <li>{this.state.companyInfo.exchange}</li>
-          <li>{this.state.companyInfo.website}</li>
-        </ul>
-        {newsArticles}
-      </section>
-=======
       <section>
       <ul className="companyInfo">
         <li>{this.state.companyInfo.companyName}</li>
@@ -59,8 +47,6 @@ class InfoCompany extends React.Component{
 
       {newsArticles}
     </section>
-
->>>>>>> fa18d393b60284f6810d879152252748786cf994
     )
   }
 }
