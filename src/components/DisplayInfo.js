@@ -1,38 +1,43 @@
 import React from 'react';
 
-const DisplayInfo = (props) => {
+class DisplayInfo extends React.Component {
 
-  const createStock = () => {
-    const stock = {
-      name: props.quote.companyName,
-      epic: props.quote.symbol,
-      price: props.quote.latestPrice,
-      change: props.quote.change,
-      time: Date.now()
+  state = {
+    numberToBuy: 0,
+    purchaseMessage: undefined
+  }
+
+
+  buyStock = () => {
+    for (let i = 0; i < this.state.numberToBuy; i++) {
+      this.props.createStock(this.props.quote);
     }
-    saveStock(stock);
+    this.setState({purchaseMessage: "Purchase Succesful!"})
   }
 
-  const saveStock = (stock) => {
-    fetch(`http://localhost:3001/stocks`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(stock)
-    })
-    .then(response => response.json())
-    .then(response => props.onStockSave(response));
+  // onChange has the event by default
+  updateNumber = (event) => {
+    const number = event.target.value;
+    this.setState({numberToBuy: number});
   }
 
-  return(
-    <React.Fragment>
-      <p>{props.quote.companyName}</p>
-      <p>price: {props.quote.latestPrice}</p>
-      <p>{props.quote.change}</p>
-      <button className="buy button" onClick={createStock}>buy</button>
-    </React.Fragment>
-  )
+  render(){
+    return(
+      <React.Fragment>
+        <p>{this.props.quote.companyName}</p>
+        <p>High: {this.props.quote.high}</p>
+        <p>Low: {this.props.quote.low}</p>
+        <p>Change: $ {this.props.quote.change} </p>
+        <input type="number"
+                   min="1"
+                   id="number-box"
+                   onChange={this.updateNumber}>
+             </input> * $ { this.props.quote ? this.props.quote.latestPrice : undefined }
+        <button className="buy button" onClick={this.buyStock} style={{'marginLeft': '10px'}}>buy</button>
+        {this.state.purchaseMessage ? <p>{this.state.purchaseMessage}</p> : undefined }
+      </React.Fragment>
+    )
+  }
 
 }
 
