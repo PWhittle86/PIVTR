@@ -147,8 +147,8 @@ class PortfolioTable extends React.Component {
     })
 
     return (
-      <section>
-        <table className="stock-table" cellSpacing="0">
+      <section className="stock-table">
+        <table cellSpacing="0">
           <thead>
             <tr>
               <th></th>
