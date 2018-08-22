@@ -110,7 +110,7 @@ class PortfolioTable extends React.Component {
         let currentValue = this.state.stock_prices[stock.epic] * stock.count
         totalValue += currentValue;
       }
-      return totalValue;
+      return parseFloat(totalValue).toFixed(2);
   }
 
   totalBookCostCalculator = (portfolioStocks) => {
@@ -140,7 +140,6 @@ class PortfolioTable extends React.Component {
           <td className="totalProfitLoss" style={this.whichColor(`${(this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)}`)}>${parseFloat((this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)).toFixed(2)}</td>
           {/* <td>{parseFloat(stock.avgChange).toFixed(2)}</td>
           <td>{parseFloat(stock.avgPrice).toFixed(2)}</td> */}
-
           <td><button className="buy button" onClick={() => this.showBuyPopUp(stock)}>buy</button></td>
           <td><button className="sell button" onClick={() => this.showSellPopUp(stock)}>sell</button></td>
         </tr>
@@ -148,8 +147,8 @@ class PortfolioTable extends React.Component {
     })
 
     return (
-      <section>
-        <table className="stock-table" cellSpacing="0">
+      <section className="stock-table">
+        <table cellSpacing="0">
           <thead>
             <tr>
               <th></th>

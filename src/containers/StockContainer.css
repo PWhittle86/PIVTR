@@ -1,9 +1,8 @@
 .main-elements .top-elements {
   display: flex;
-  /* padding: 30px; */
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .info-chart {
@@ -24,10 +23,84 @@
   background-color: #fff;
 }
 
+#app-header {
+  background-image: url('/images/barchart.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-family: Yanone Kaffeesatz;
+  font-size: 80px;
+  text-align: center;
+  position: relative;
+}
+
+#app-header h1 {
+  margin: 0;
+}
+
+/* FAVOURITES */
+
+#notifications {
+  position: absolute;
+  right: 0;
+  top: -10px;
+}
+
+button#notifications {
+  background-image: url('/images/notifications.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  /* position: relative; */
+}
+
+button#notifications span {
+  background-color: red;
+  font-weight: bold;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 30px;
+  position: absolute;
+  top: -5px;
+}
+
+#favourites {
+  height: 100px;
+  width: 200px;
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.info-chart{
+  text-align: center;
+}
+
+.info_news {
+  padding-top: 38px;
+  padding-left: 40px;
+  width: 400px;
+  height: 450px;
+  overflow: auto;
+  /* background-color: #F2F2F2; */
+}
+
+#company-industry{
+  font-weight: bold;
+}
+
 /* ROTATOR */
 
 .rotator {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   height: 14px;
   overflow: hidden;
   white-space: nowrap;
@@ -43,7 +116,7 @@
   animation: rotator 40s linear infinite;
 }
 
-.rotator-text span {
+.rotator-text div {
   margin-left: 40px;
 }
 .rotator-text span span {
@@ -53,6 +126,11 @@
 @keyframes rotator {
     0%   { transform: translate(0, 0); }
     100% { transform: translate(-100%, 0); }
+}
+
+.rotator-text span img {
+  height: 10px;
+  width: 10px;
 }
 
 /* PORTFOLIO TABLE */
@@ -74,12 +152,18 @@
   background-image: url('/images/heart_hover.png');
 }
 
-.stock-table tr {
-  margin-bottom: 5px;
+.stock-table {
+  width: 85%;
+  margin: auto;
+  /* font-size: larger; */
 }
 
-.stock-table tr:nth-child(even) {
-  border-bottom: 1px solid #eee;
+.stock-table table {
+  width: -webkit-fill-available;
+}
+
+.stock-table tr {
+  line-height: 3em;
 }
 
 .button {
@@ -146,6 +230,7 @@
 .stock-search {
   width: 240px;
   font-size: 20px;
+  margin-left: 20px;
 }
 
 .stock-search h2 {
@@ -169,7 +254,6 @@
 }
 
 .time:hover {
-
   border-bottom: 1px solid orange;
 }
 
@@ -188,9 +272,7 @@
 
 .mission-statement {
   display: flex;
-
   float: right;
-
 }
 
 #footer-content {
@@ -227,11 +309,13 @@
   bottom: 0;
   background-color: #AFD3D3;
   width: 60%;
+
   float: right;
   font-size: 18px;
   margin-top: 0px;
   /* margin-left: 300px; */
   /* padding-left: 40px; */
+
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   display: flex;

@@ -47,7 +47,7 @@ class InfoChart extends React.Component {
           <button className="time button" onClick={()=>this.changeTime("2y")}>2Y</button>
           <button className="time button" onClick={()=>this.changeTime("5y")}>5Y</button>
         </div>
-        <p>{epicCAPS}</p>
+        <h2>{epicCAPS}</h2>
         <LineChart className="lineChart" width={600} height={400} data={this.state.data}>
           <Line type="monotone" dot={false} dataKey="price" stroke="#8884d8" strokeWidth={2} />
           <CartesianGrid strokeDasharray="3 3" />
@@ -56,6 +56,7 @@ class InfoChart extends React.Component {
           <Legend />
           <Tooltip />
         </LineChart>
+
       </React.Fragment>
     )}
   }

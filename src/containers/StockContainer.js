@@ -7,6 +7,7 @@ import StockSearch from '../components/StockSearch.js';
 import Rotator from '../components/Rotator.js';
 import StockPieChart from '../components/StockPieChart.js';
 import InfoCompany from '../components/InfoCompany';
+// import Favourites from '../components/Favourites.js';
 
 class StockContainer extends React.Component {
   constructor(props){
@@ -14,6 +15,7 @@ class StockContainer extends React.Component {
     this.state = {
       stocks: [],
       portfolio: [],
+      showFavourites: false,
       selectedStock: {epic: "aapl"}
     }
   }
@@ -48,7 +50,7 @@ class StockContainer extends React.Component {
       if(index !== -1) {
         portfolio[index].count++;
         this.setState({ portfolio })
-      // new item, add it to portfolio without sending request to server
+        // new item, add it to portfolio without sending request to server
       } else {
         // create an object that matches the mongo schema
         const portfolioStock = {
@@ -95,43 +97,63 @@ class StockContainer extends React.Component {
     this.setState({portfolio: updatedPortfolio});
   }
 
+  filterFavourites = () => {
+    const favs = this.state.portfolio.filter(stock => stock.favorite);
+    return favs;
+  }
+
+  showFavouritesAlert = () => {
+    this.setState({showFavourites : !this.state.showFavourites})
+  }
+
   render(){
     return(
       <React.Fragment>
         <section id="app-header">
           <h1>PIVTR</h1>
-        </section>
-        <Rotator stocks={this.state.stocks}/>
-        <div className="intro box">
-          <p>Don't be a limiter. Be a <b>PIVTR</b>.</p>
-        </div>
-        <div className="top-elements">
-          <div className="pie-chart box">
-              <StockPieChart portfolio={this.state.portfolio}/>
-          </div>
-          <div className="stock-search box">
-              <StockSearch onStockSave={this.onStockSave} />
-          </div>
-        </div>
-        <div className="portfolio-table box">
-            {this.state.stocks.length >= 1 && this.state.portfolio.length >= 1 ?
-              <PortfolioTable onStockSelect={this.onStockSelect}
-                              stocks={this.state.stocks}
-                              portfolio={this.state.portfolio}
-                              refreshPortfolio={this.fetchUserProfile}
-                              switchFavourite={this.switchFavourite}
-                              /> : null}
-        </div>
-        <div className="info-chart box">
-            <InfoChart selectedStock={this.state.selectedStock}/>
-            <div className="info_news">
-              <InfoCompany selectedStock={this.state.selectedStock}/>
-            </div>
-            {/* <StockTable stocks={this.state.stocks}/> */}
-            {/* <-keep this, might need later  */}
+          {/* <button id="notifications" onClick={this.showFavouritesAlert}>
+          <span>1</span>
+        </button>
+        {this.state.showFavourites ? <Favourites favorites={this.filterFavourites}/> : undefined} */}
+      </section>
+
+      <Rotator stocks={this.state.stocks}/>
+      <div className="intro box">
+        <p>Don't be a limiter. Be a <b>PIVTR</b>.</p>
+      </div>
+
+      <div className="top-elements">
+        <div className="pie-chart box">
+          <StockPieChart portfolio={this.state.portfolio}/>
         </div>
 
+        <div className="stock-search box">
+          <StockSearch onStockSave={this.onStockSave} />
+        </div>
+      </div>
+
+      <div className="portfolio-table box">
+        {this.state.stocks.length >= 1 && this.state.portfolio.length >= 1 ?
+          <PortfolioTable onStockSelect={this.onStockSelect}
+            stocks={this.state.stocks}
+            portfolio={this.state.portfolio}
+            refreshPortfolio={this.fetchUserProfile}
+            switchFavourite={this.switchFavourite}
+          /> : null}
+        </div>
+
+        <div className = "infoContainer box">
+          <div className="info-chart">
+            <InfoChart selectedStock={this.state.selectedStock}/>
+          </div>
+          <div className="info_news">
+            <InfoCompany selectedStock={this.state.selectedStock}/>
+          </div>
+        </div>
+
+
         <footer id="footer">
+
             <div id="footer-content">
               <section id="footer-image">
                 <img src="/images/footer.jpg"></img>
@@ -152,6 +174,7 @@ class StockContainer extends React.Component {
               </section>
               </div>
             </div>
+
         </footer>
       </React.Fragment>
     )
