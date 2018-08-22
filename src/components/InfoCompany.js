@@ -6,7 +6,8 @@ class InfoCompany extends React.Component{
     super(props);
     this.state = {
       companyInfo: {},
-      companyNews: []
+      companyNews: [],
+      companyLogo: ""
     }
   }
 
@@ -22,6 +23,10 @@ class InfoCompany extends React.Component{
       fetch(`https://api.iextrading.com/1.0/stock/${epic}/news`)
      .then(response => response.json())
      .then(companyNews => this.setState({companyNews: companyNews}))
+
+     fetch(`https://api.iextrading.com/1.0/stock/${epic}/logo`)
+    .then(response => response.json())
+    .then(companyLogo => this.setState({companyLogo: companyLogo}))
     }
   }
 
@@ -32,7 +37,7 @@ class InfoCompany extends React.Component{
     const newsArticles = this.state.companyNews.map((newsItem, index) => {
       return(
         <section>
-          <h4>{newsItem.headline}</h4>
+          <h3>{newsItem.headline}</h3>
           <p>{newsItem.summary}</p>
           <a href={newsItem.url}>Read on...</a>
         </section>
@@ -41,13 +46,13 @@ class InfoCompany extends React.Component{
 
     return(
       <section className="companyInfo">
-        <h3>{this.state.companyInfo.companyName}</h3>
-        <ul>
-          <li>{this.state.companyInfo.industry}</li>
-          <li>{this.state.companyInfo.description}</li>
-          <li>{this.state.companyInfo.exchange}</li>
-          <li>{this.state.companyInfo.website}</li>
-        </ul>
+        <h2>{this.state.companyInfo.companyName}</h2>
+        <img src={this.state.companyLogo.url}/>
+        <p id= 'company-industry'>{this.state.companyInfo.industry}</p>
+        <p>{this.state.companyInfo.description}</p>
+        <a href={this.state.companyInfo.website}>{this.state.companyInfo.website}</a>
+        <break/>
+        <h2>Company News</h2>
         {newsArticles}
       </section>
     )

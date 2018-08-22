@@ -75,6 +75,28 @@ button#notifications span {
   top: 0px;
 }
 
+.infoContainer {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.info-chart{
+  text-align: center;
+}
+
+.info_news {
+  padding-top: 38px;
+  padding-left: 40px;
+  width: 400px;
+  height: 450px;
+  overflow: auto;
+  /* background-color: #F2F2F2; */
+}
+
+#company-industry{
+  font-weight: bold;
+}
+
 /* ROTATOR */
 
 .rotator {
