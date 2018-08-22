@@ -136,6 +136,7 @@ class StockContainer extends React.Component {
               <section id="footer-image">
                 <img src="/images/footer.jpg"></img>
               </section>
+              <div className="text-and-impressum">
               <section id="mission-statement">
                   <p>At PIVTR we believe in one thing: optimising frictionless web-readiness. But what does that mean?</p>
                   <p>It means we're a forward-thinking anti-conglomerate that works tirelessly to incubate cutting-edge paradigms and above all else: synergise backwards overflow.</p>
@@ -149,6 +150,7 @@ class StockContainer extends React.Component {
                 <a href="#"><img src="/images/barchart.png"></img></a></p>
 
               </section>
+              </div>
             </div>
         </footer>
       </React.Fragment>

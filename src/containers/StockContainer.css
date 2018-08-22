@@ -178,15 +178,16 @@
 #footer {
   margin-top: 30px;
   background-color: #AFD3D3;
-  padding: 20px 20px 0px 20px;
+  padding: 0px 20px 0px 20px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   width: 100%;
 }
 
 .mission-statement {
+  display: flex;
 
   float: right;
 
@@ -197,6 +198,7 @@
   vertical-align: bottom;
   color: white;
   display: flex;
+
 }
 
 #footer-image img{
@@ -204,24 +206,35 @@
   height: 300px;
 }
 
+.text-and-impressum {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 #mission-statement {
-  margin: 0px auto 50px;
+  /* margin: 0px auto 50px; */
   font-size: 18px;
-  width: 69%;
+  width: 87%;
   float: right;
-  padding-right: 40px;
+  /* padding-right: 40px; */
+  /* text-shadow: 1px 1px grey; */
 }
 
 #impressum {
-  position: fixed;
+  /* position:  */
   bottom: 0;
   background-color: #AFD3D3;
   width: 60%;
-  font-size: 20px;
-  margin-top: 20px;
-  margin-left: 300px;
+  float: right;
+  font-size: 18px;
+  margin-top: 0px;
+  /* margin-left: 300px; */
+  /* padding-left: 40px; */
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  display: flex;
 }
 
 #impressum a {
