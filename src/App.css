@@ -1,14 +1,46 @@
-#app-header {
-
-  font-family: Yanone Kaffeesatz;
-  font-size: 80px;
-  text-align: center;
-  margin-top: 20px;
-
+body {
+  font-family: Raleway;
+  /* can write padding/margin as oneliner */
+  margin: 5px 25px 0px 25px;
+  padding: 30px 30px 0px 30px;
+  background-color: #eee;
 }
 
-body {
+/* Removes blue outline from buttons in Chrome */
+button:focus {
+  outline: 0;
+}
 
-  font-family: Raleway;
+table {
+  border: none;
+  text-align: center;
+}
 
+th {
+  text-align: center;
+  font-size: larger;
+}
+
+li {
+  list-style: none;
+}
+
+.ellipsis {
+  max-width: 260px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-right: 20px;
+}
+
+#stock-table-search {
+  display: flex;
+}
+
+.box{
+  padding: 20px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  background-color: #fff;
+  border-radius: 6px;
+  margin-bottom: 20px;
 }
