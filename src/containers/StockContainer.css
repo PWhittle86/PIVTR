@@ -78,6 +78,7 @@ button#notifications span {
 .infoContainer {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
 .info-chart{
@@ -86,7 +87,7 @@ button#notifications span {
 
 .info_news {
   padding-top: 38px;
-  padding-left: 40px;
+  padding-right: 20px;
   width: 400px;
   height: 450px;
   overflow: auto;
