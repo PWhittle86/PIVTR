@@ -19,6 +19,10 @@ class InfoCompany extends React.Component{
       fetch(`https://api.iextrading.com/1.0/stock/${epic}/company`)
       .then(response => response.json())
       .then(companyInfo => this.setState({companyInfo: companyInfo}))
+
+      fetch(`https://api.iextrading.com/1.0/stock/${epic}/news`)
+     .then(response => response.json())
+     .then(companyNews => this.setState({companyNews: companyNews}))
     }
   }
 
