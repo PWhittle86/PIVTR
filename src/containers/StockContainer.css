@@ -43,13 +43,13 @@
 
 /* FAVOURITES */
 
-#notifications {
+#notification-icon {
   position: absolute;
   right: 0;
-  top: -10px;
+  top: -5px;
 }
 
-button#notifications {
+button#notification-icon {
   background-image: url('/images/notifications.png');
   background-repeat: no-repeat;
   background-size: contain;
@@ -61,7 +61,7 @@ button#notifications {
   /* position: relative; */
 }
 
-button#notifications span {
+button#notification-icon span {
   background-color: red;
   font-weight: bold;
   color: white;
@@ -71,12 +71,31 @@ button#notifications span {
   top: -5px;
 }
 
-#favourites {
-  height: 100px;
-  width: 200px;
+#notification-box {
   position: absolute;
-  right: 0;
-  top: 0px;
+  right: 0px;
+  top: 25px;
+  min-height: 50px;
+  max-height: 150px;
+  width: 180px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  overflow-y: scroll;
+}
+
+.notification-element {
+  padding: 10px;
+  border-bottom: 1px solid #878787;
+  /* border-radius: 6px; */
+  background-color: white;
+  text-align: left;
+}
+
+.notification-element p {
+  margin: 0;
+  text-align: left;
+  color: #239B9B;
 }
 
 .infoContainer {
@@ -179,6 +198,7 @@ button#notifications span {
   cursor: pointer;
   color: white;
   margin: 2px;
+  display: block;
 }
 
 .buy {
@@ -232,6 +252,10 @@ button#notifications span {
   animation: showSweetAlert 0.3s ease 0s 1 normal none running;
 }
 
+.popup button {
+  display:inline;
+}
+
 .popup input {
   width: 60px;
   height: 30px;
@@ -264,7 +288,15 @@ button#notifications span {
     font-size: 14px;
 }
 
+/* .stock-search button {
+  display:inline-block;
+} */
+
 /* INFOCHART */
+
+.time-periods {
+  height: 40px;
+}
 
 .time {
   box-shadow: 0 2px 2px 0 rgba(233, 30, 99, 0.14),
@@ -272,9 +304,11 @@ button#notifications span {
               0 1px 5px 0 rgba(233, 30, 99, 0.12);
   background-color: lightpink;
   border-bottom: 3px solid orange;
+  display: inline;
 }
 
 .time:hover {
+  /* margin: 4px 2px 2px 2px; */
   border-bottom: 1px solid orange;
 }
 
@@ -287,8 +321,6 @@ button#notifications span {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  /* margin-bottom: 5px; */
-  width: 100%;
 }
 
 .mission-statement {
@@ -301,7 +333,6 @@ button#notifications span {
   vertical-align: bottom;
   color: white;
   display: flex;
-
 }
 
 #footer-image img{
