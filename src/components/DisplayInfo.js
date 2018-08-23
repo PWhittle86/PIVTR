@@ -1,4 +1,5 @@
 import React from 'react';
+import BuyPopUp from './BuyPopUp.js';
 
 class DisplayInfo extends React.Component {
 
@@ -33,7 +34,7 @@ class DisplayInfo extends React.Component {
                    id="number-box"
                    onChange={this.updateNumber}>
              </input> * $ { this.props.quote ? this.props.quote.latestPrice : undefined }
-        <button className="buy button" onClick={this.buyStock} style={{'marginLeft': '10px'}}>buy</button>
+        <button className="buy button" onClick={this.buyStock}>buy</button>
         {this.state.purchaseMessage ? <p>{this.state.purchaseMessage}</p> : undefined }
       </React.Fragment>
     )

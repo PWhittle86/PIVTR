@@ -6,19 +6,6 @@ body {
   background-color: #eee;
 }
 
-#app-header {
-  background-image: url('/images/barchart.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  font-family: Yanone Kaffeesatz;
-  font-size: 80px;
-  text-align: center;
-}
-
-#app-header h1 {
-  margin: 0;
-}
-
 /* Removes blue outline from buttons in Chrome */
 button:focus {
   outline: 0;
@@ -26,11 +13,12 @@ button:focus {
 
 table {
   border: none;
+  text-align: center;
 }
 
 th {
-  text-align: left;
-  padding-right: 30px;
+  text-align: center;
+  font-size: larger;
 }
 
 li {
@@ -42,6 +30,11 @@ li {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  padding-right: 20px;
+}
+
+.ellipsis:hover {
+  text-decoration: underline;
 }
 
 #stock-table-search {
