@@ -7,7 +7,7 @@ class PortfolioTable extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      stock_prices: {},
+      // stock_prices: {},
       stock_change: {},
       portfolio_prices: {},
       showSellPopUp: false,
@@ -108,7 +108,7 @@ class PortfolioTable extends React.Component {
   totalMarketValueCalculator = (portfolioStocks) => {
       let totalValue = 0;
       for(let stock of portfolioStocks){
-        let currentValue = this.state.stock_prices[stock.epic] * stock.count
+        let currentValue = this.state.newPricingState[stock.epic] * stock.count
         totalValue += currentValue;
       }
       return parseFloat(totalValue).toFixed(2);
@@ -136,9 +136,9 @@ class PortfolioTable extends React.Component {
           <td className="currentPrice">{this.state.newPricingState[stock.epic]}</td>
           <td className="changePercent" style={this.whichColor(`${this.state.stock_change[stock.epic]}`)}>{(parseFloat(`${this.state.stock_change[stock.epic]}`)*100).toFixed(3)}</td>
           <td className="sharesHeld">{stock.count}</td>
-          <td className="totalMarketValue">${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
+          <td className="totalMarketValue">${parseFloat(this.state.newPricingState[stock.epic] * stock.count).toFixed(2)}</td>
           <td className="totalBookCost">${parseFloat(stock.avgPrice * stock.count).toFixed(2)}</td>
-          <td className="totalProfitLoss" style={this.whichColor(`${(this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)}`)}>${parseFloat((this.state.stock_prices[stock.epic] * stock.count) - (stock.avgPrice * stock.count)).toFixed(2)}</td>
+          <td className="totalProfitLoss" style={this.whichColor(`${(this.state.newPricingState[stock.epic] * stock.count) - (stock.avgPrice * stock.count)}`)}>${parseFloat((this.state.newPricingState[stock.epic] * stock.count) - (stock.avgPrice * stock.count)).toFixed(2)}</td>
           {/* <td>{parseFloat(stock.avgChange).toFixed(2)}</td>
           <td>{parseFloat(stock.avgPrice).toFixed(2)}</td> */}
           <td><button className="buy button" onClick={() => this.showBuyPopUp(stock)}>buy</button></td>
