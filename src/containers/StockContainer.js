@@ -16,13 +16,20 @@ class StockContainer extends React.Component {
       stocks: [],
       portfolio: [],
       showFavourites: false,
-      selectedStock: {epic: "aapl"}
+      selectedStock: {epic: "aapl"},
+      portfolioPrices: {}
     }
   }
 
   componentDidMount(){
     this.fetchCurrentStocks();
     this.fetchUserProfile();
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.portfolio !== this.state.portfolio){
+      this.fetchStockPrices();
+    }
   }
 
   fetchCurrentStocks = () => {
@@ -34,7 +41,21 @@ class StockContainer extends React.Component {
   fetchUserProfile = () => {
     fetch('http://localhost:3001/stocks')
     .then(response => response.json())
-    .then(portfolio => this.setState({portfolio: portfolio}));
+    .then(portfolio => this.setState({portfolio: portfolio}))
+  }
+
+  fetchStockPrices = () => {
+    let priceObject = {};
+    const priceInserter = (quote, object) =>{
+      object[quote.symbol] = quote.latestPrice;
+    }
+
+    this.state.portfolio.forEach((stock) => {
+      fetch(`https://api.iextrading.com/1.0/stock/${stock.epic}/quote`)
+      .then(response => response.json())
+      .then(quote => priceInserter(quote, priceObject))
+    })
+    this.setState({portfolioPrices: priceObject})
   }
 
   onStockSelect = (stock) => {
@@ -142,6 +163,7 @@ class StockContainer extends React.Component {
             portfolio={this.state.portfolio}
             refreshPortfolio={this.fetchUserProfile}
             switchFavourite={this.switchFavourite}
+            prices={this.state.portfolioPrices}
           /> : null}
         </div>
 

@@ -12,7 +12,8 @@ class PortfolioTable extends React.Component {
       portfolio_prices: {},
       showSellPopUp: false,
       showBuyPopUp: false,
-      popupStock: undefined
+      popupStock: undefined,
+      newPricingState: {}
     }
   }
 
@@ -35,7 +36,7 @@ class PortfolioTable extends React.Component {
       portfolioObject[stock.symbol] = stock.avgPrice;
     })
 
-    this.setState({stock_prices: priceObject, stock_change: changeObject, portfolio_prices: portfolioObject});
+    this.setState({stock_prices: priceObject, stock_change: changeObject, portfolio_prices: portfolioObject, newPricingState:this.props.prices});
   }
 
   createStock = (quote) => {
@@ -132,7 +133,7 @@ class PortfolioTable extends React.Component {
           <td><button className={heartStyle} onClick={()=> this.props.switchFavourite(stock.epic)}></button></td>
           <td className="ellipsis" onClick={()=>this.sendStockUp(stock)}>{stock.name}</td>
           <td className="epic">{stock.epic}</td>
-          <td className="currentPrice">{this.state.stock_prices[stock.epic]}</td>
+          <td className="currentPrice">{this.state.newPricingState[stock.epic]}</td>
           <td className="changePercent" style={this.whichColor(`${this.state.stock_change[stock.epic]}`)}>{(parseFloat(`${this.state.stock_change[stock.epic]}`)*100).toFixed(3)}</td>
           <td className="sharesHeld">{stock.count}</td>
           <td className="totalMarketValue">${parseFloat(this.state.stock_prices[stock.epic] * stock.count).toFixed(2)}</td>
