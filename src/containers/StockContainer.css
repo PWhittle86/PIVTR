@@ -350,6 +350,11 @@ button#notifications span {
   height: 50px;
 }
 
+#apiInfo{
+  font-style: italic;
+  font-size: 15px;
+}
+
 .intro {
   text-align: center;
   font-size: 20px;
