@@ -28,7 +28,6 @@ class PortfolioTable extends React.Component {
     const portfolioObject = {};
 
     this.props.stocks.forEach((quote) => {
-      priceObject[quote.symbol] = quote.latestPrice;
       changeObject[quote.symbol] = quote.changePercent;
     });
 

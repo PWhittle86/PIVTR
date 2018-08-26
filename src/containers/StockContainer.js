@@ -17,7 +17,8 @@ class StockContainer extends React.Component {
       portfolio: [],
       showFavourites: false,
       selectedStock: {epic: "aapl"},
-      portfolioPrices: {}
+      portfolioPrices: {},
+      portfolioChanges: {}
     }
   }
 
@@ -29,6 +30,7 @@ class StockContainer extends React.Component {
   componentDidUpdate(prevProps, prevState){
     if(prevState.portfolio !== this.state.portfolio){
       this.fetchStockPrices();
+      this.fetchStockChanges();
     }
   }
 
@@ -56,6 +58,22 @@ class StockContainer extends React.Component {
       .then(quote => priceInserter(quote, priceObject))
     })
     this.setState({portfolioPrices: priceObject})
+  }
+
+  //Todo - refactor stock changes so that the function is covered by fetchStockPrices. Shouldn't be necessary to poll the api twice.
+
+  fetchStockChanges= () => {
+    let changeObject = {};
+    const changeInserter = (quote, object) =>{
+      object[quote.symbol] = quote.change;
+    }
+
+    this.state.portfolio.forEach((stock) => {
+      fetch(`https://api.iextrading.com/1.0/stock/${stock.epic}/quote`)
+      .then(response => response.json())
+      .then(quote => changeInserter(quote, changeObject))
+    })
+    this.setState({portfolioChanges: changeObject})
   }
 
   onStockSelect = (stock) => {
