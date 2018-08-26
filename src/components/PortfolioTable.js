@@ -24,18 +24,13 @@ class PortfolioTable extends React.Component {
   componentDidMount(){
 
     const priceObject = {};
-    const changeObject = {};
     const portfolioObject = {};
-
-    this.props.stocks.forEach((quote) => {
-      changeObject[quote.symbol] = quote.changePercent;
-    });
 
     this.props.portfolio.forEach((stock) => {
       portfolioObject[stock.symbol] = stock.avgPrice;
     })
 
-    this.setState({stock_prices: priceObject, stock_change: changeObject, portfolio_prices: portfolioObject, newPricingState:this.props.prices});
+    this.setState({stock_prices: priceObject, stock_change: this.props.changes, portfolio_prices: portfolioObject, newPricingState:this.props.prices});
   }
 
   createStock = (quote) => {

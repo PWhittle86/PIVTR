@@ -65,7 +65,7 @@ class StockContainer extends React.Component {
   fetchStockChanges= () => {
     let changeObject = {};
     const changeInserter = (quote, object) =>{
-      object[quote.symbol] = quote.change;
+      object[quote.symbol] = quote.changePercent;
     }
 
     this.state.portfolio.forEach((stock) => {
@@ -182,6 +182,7 @@ class StockContainer extends React.Component {
             refreshPortfolio={this.fetchUserProfile}
             switchFavourite={this.switchFavourite}
             prices={this.state.portfolioPrices}
+            changes={this.state.portfolioChanges}
           /> : null}
         </div>
 
