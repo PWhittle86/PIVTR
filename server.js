@@ -5,15 +5,19 @@ const fetch = require('node-fetch');
 const parser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+const publicPath = path.join(__dirname, '../client/public');
 
 app.use(cors());
 app.use(parser.json());
 app.use(express.static('client/build'));
 app.use(parser.urlencoded({extended: true}));
 
-MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, function(error, client){
+let url = 'mongodb://<dbuser>:<dbpassword>@ds233228.mlab.com:33228/heroku_583cwjw6'|| 'mongodb://localhost:27017';
+let port = process.env.PORT || 3000;
 
-  const db = client.db("stockdb");
+MongoClient.connect(url { useNewUrlParser: true }, function(error, client){
+
+  const db = client.db("heroku_583cwjw6");
   console.log("Connected to db");
 
   //IEX API CALLS
