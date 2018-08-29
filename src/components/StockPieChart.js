@@ -21,7 +21,8 @@ class StockPieChart extends React.Component {
       left: '460px',
       fontSize: '25px',
       overflow: 'auto',
-      height: '400px'
+      height: '400px',
+      maxHeight: '400px'
     }
 
   	return (

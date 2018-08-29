@@ -17,7 +17,6 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
   console.log("Connected to db");
 
   //IEX API CALLS
-
   app.get('/', function(req, res){
     fetch('https://api.iextrading.com/1.0/stock/market/collection/sector?collectionName=Technology')
     .then(response => response.json())
