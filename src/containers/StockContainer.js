@@ -16,13 +16,22 @@ class StockContainer extends React.Component {
       stocks: [],
       portfolio: [],
       showFavourites: false,
-      selectedStock: {epic: "aapl"}
+      selectedStock: {epic: "aapl"},
+      portfolioPrices: {},
+      portfolioChanges: {}
     }
   }
 
   componentDidMount(){
     this.fetchCurrentStocks();
     this.fetchUserProfile();
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.portfolio !== this.state.portfolio){
+      this.fetchStockPrices();
+      this.fetchStockChanges();
+    }
   }
 
   fetchCurrentStocks = () => {
@@ -34,7 +43,37 @@ class StockContainer extends React.Component {
   fetchUserProfile = () => {
     fetch('http://localhost:3001/stocks')
     .then(response => response.json())
-    .then(portfolio => this.setState({portfolio: portfolio}));
+    .then(portfolio => this.setState({portfolio: portfolio}))
+  }
+
+  fetchStockPrices = () => {
+    let priceObject = {};
+    const priceInserter = (quote, object) =>{
+      object[quote.symbol] = quote.latestPrice;
+    }
+
+    this.state.portfolio.forEach((stock) => {
+      fetch(`https://api.iextrading.com/1.0/stock/${stock.epic}/quote`)
+      .then(response => response.json())
+      .then(quote => priceInserter(quote, priceObject))
+    })
+    this.setState({portfolioPrices: priceObject})
+  }
+
+  //Todo - refactor stock changes so that the function is covered by fetchStockPrices. Shouldn't be necessary to poll the api twice.
+
+  fetchStockChanges= () => {
+    let changeObject = {};
+    const changeInserter = (quote, object) =>{
+      object[quote.symbol] = quote.changePercent;
+    }
+
+    this.state.portfolio.forEach((stock) => {
+      fetch(`https://api.iextrading.com/1.0/stock/${stock.epic}/quote`)
+      .then(response => response.json())
+      .then(quote => changeInserter(quote, changeObject))
+    })
+    this.setState({portfolioChanges: changeObject})
   }
 
   onStockSelect = (stock) => {
@@ -142,6 +181,8 @@ class StockContainer extends React.Component {
             portfolio={this.state.portfolio}
             refreshPortfolio={this.fetchUserProfile}
             switchFavourite={this.switchFavourite}
+            prices={this.state.portfolioPrices}
+            changes={this.state.portfolioChanges}
           /> : null}
         </div>
 
@@ -176,6 +217,7 @@ class StockContainer extends React.Component {
                     <a href="https://github.com/adriflorence">Adri Florence</a>
                     <a href="#"><img src="/images/barchart.png"></img></a></p>
                   </section>
+                  <p id='apiInfo'>All stock information in this project was pulled from the IEX API. Further information available <a href="https://iextrading.com/developer/">here</a>.</p>
 
               </section>
               </div>
