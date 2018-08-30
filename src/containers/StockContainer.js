@@ -293,6 +293,7 @@ class StockContainer extends React.Component {
                     <a href="https://github.com/PWhittle86"> Peter Whittle</a> &
                     <a href="https://github.com/adriflorence"> Adri Florence</a>
                     <a href="#"><img src="/images/barchart.png"></img></a></p>
+                    <p>TEST</p>
                   </section>
                   <p id='apiInfo'>All stock information in this project was pulled from the IEX API. Further information available <a href="https://iextrading.com/developer/">here</a>.</p>
 
