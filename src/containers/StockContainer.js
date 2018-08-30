@@ -34,13 +34,13 @@ class StockContainer extends React.Component {
   }
 
   fetchCurrentStocks = () => {
-    fetch('http://heroku_583cwjw6:3001/')
+    fetch('http://heroku_pxbjnrdv:3001/')
     .then(response => response.json())
     .then(stocks => this.setState({stocks: stocks}));
   }
 
   fetchUserProfile = () => {
-    fetch('http://heroku_583cwjw6:3001/stocks')
+    fetch('http://heroku_pxbjnrdv:3001/stocks')
     .then(response => response.json())
     .then(portfolio => this.setState({portfolio: portfolio}))
   }
@@ -106,7 +106,7 @@ class StockContainer extends React.Component {
   }
 
   saveStock = (stock) => {
-    fetch(`http://heroku_583cwjw6:3001/stocks`, {
+    fetch(`http://heroku_pxbjnrdv:3001/stocks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -171,7 +171,7 @@ class StockContainer extends React.Component {
 
   // functionality for favourites
   sendFavourite = (epic) => {
-    fetch(`http://heroku_583cwjw6:3001/favorites`, {
+    fetch(`http://heroku_pxbjnrdv:3001/favorites`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({epic: epic})
@@ -179,7 +179,7 @@ class StockContainer extends React.Component {
   }
 
   removeFavourite = (epic) => {
-    fetch(`http://heroku_583cwjw6:3001/favorites/${epic}`, {
+    fetch(`http://heroku_pxbjnrdv:3001/favorites/${epic}`, {
       method: 'delete'
     });
   }

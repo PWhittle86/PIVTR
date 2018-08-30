@@ -13,7 +13,7 @@ class StockSearch extends React.Component {
     // this.setState({searchText: event.target.value});
     const searchText = event.target.value;
     if(searchText.length >= 2 && searchText.length <= 5) {
-      fetch(`http://heroku_583cwjw6:3001/quote?symbol=${searchText}`)
+      fetch(`http://heroku_pxbjnrdv:3001/quote?symbol=${searchText}`)
       .then(response => response.json())
       .then(response => this.setState({result: response}));
     }

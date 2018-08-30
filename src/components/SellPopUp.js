@@ -27,7 +27,7 @@ class SellPopUp extends React.Component {
   sellStock = () => {
     const epic = this.props.stock.epic;
     const numberToSell = this.state.numberToSell;
-    fetch(`http://heroku_583cwjw6:3001/stocks/${epic}/${numberToSell}`, {
+    fetch(`http://heroku_pxbjnrdv:3001/stocks/${epic}/${numberToSell}`, {
         method: 'delete'
     })
     .then( _ => this.props.close());
