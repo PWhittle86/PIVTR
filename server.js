@@ -12,7 +12,7 @@ app.use(parser.json());
 app.use(express.static('client/build'));
 app.use(parser.urlencoded({extended: true}));
 
-let url = 'mongodb://<dbuser>:<dbpassword>@ds233228.mlab.com:33228/heroku_583cwjw6'|| 'mongodb://localhost:27017';
+let url = 'mongodb://<heroku_583cwjw6>:<S3pultura!>@ds233228.mlab.com:33228/heroku_583cwjw6'|| 'mongodb://localhost:27017';
 let port = process.env.PORT || 3000;
 
 MongoClient.connect(url { useNewUrlParser: true }, function(error, client){
