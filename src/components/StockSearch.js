@@ -13,7 +13,8 @@ class StockSearch extends React.Component {
     // this.setState({searchText: event.target.value});
     const searchText = event.target.value;
     if(searchText.length >= 2 && searchText.length <= 5) {
-      fetch(`http://localhost:3001/quote?symbol=${searchText}`)
+      // fetch(`http://localhost:3001/quote?symbol=${searchText}`) Original code. Amended for online deployment.
+      fetch(`mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb/quote?symbol=${searchText}`)
       .then(response => response.json())
       .then(response => this.setState({result: response}));
     }

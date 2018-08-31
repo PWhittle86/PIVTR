@@ -34,13 +34,15 @@ class StockContainer extends React.Component {
   }
 
   fetchCurrentStocks = () => {
-    fetch('http://localhost:3001/')
+    // fetch('http://localhost:3001/') Original code. Amended for online deployment.
+    // fetch('mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb/')
     .then(response => response.json())
     .then(stocks => this.setState({stocks: stocks}));
   }
 
   fetchUserProfile = () => {
-    fetch('http://localhost:3001/stocks')
+    // fetch('http://localhost:3001/stocks') Original code. Amended for online deployment.
+    fetch('mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb/stocks')
     .then(response => response.json())
     .then(portfolio => this.setState({portfolio: portfolio}))
   }
@@ -106,7 +108,9 @@ class StockContainer extends React.Component {
   }
 
   saveStock = (stock) => {
-    fetch(`http://localhost:3001/stocks`, {
+    // fetch(`http://localhost:3001/stocks`, { Original code. Amended for online deployment.
+    fetch(`mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb/stocks`, {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -171,7 +175,9 @@ class StockContainer extends React.Component {
 
   // functionality for favourites
   sendFavourite = (epic) => {
-    fetch(`http://localhost:3001/favorites`, {
+    // fetch(`http://localhost:3001/favorites`, { Original code. Amended for online deployment.
+    fetch(`mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb/favorites`, {
+
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({epic: epic})
@@ -179,7 +185,9 @@ class StockContainer extends React.Component {
   }
 
   removeFavourite = (epic) => {
-    fetch(`http://localhost:3001/favorites/${epic}`, {
+    // fetch(`http://localhost:3001/favorites/${epic}`, { Original code. Amended for online deployment.
+    fetch(`mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb/favorites/${epic}`, {
+
       method: 'delete'
     });
   }

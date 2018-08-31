@@ -6,12 +6,18 @@ const parser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
+//Part of onlinedb deployment.
+const publicPath = path.join(__dirname, '../client/public');
+app.use(express.static(publicPath));
+let url = 'mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb'|| 'mongodb://localhost:27017';
+let port = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(parser.json());
 app.use(express.static('client/build'));
 app.use(parser.urlencoded({extended: true}));
 
-MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, function(error, client){
+MongoClient.connect(url, { useNewUrlParser: true }, function(error, client){
 
   const db = client.db("stockdb");
   console.log("Connected to db");
@@ -197,7 +203,7 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, func
 
 
 
-app.listen(3001, function(){
+app.listen(port, function(){
   console.log("App running");
 });
 
