@@ -35,7 +35,7 @@ class StockContainer extends React.Component {
 
   fetchCurrentStocks = () => {
     // fetch('http://localhost:3001/') Original code. Amended for online deployment.
-    // fetch('mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb/')
+    fetch('mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb/')
     .then(response => response.json())
     .then(stocks => this.setState({stocks: stocks}));
   }

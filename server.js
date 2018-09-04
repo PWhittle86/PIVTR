@@ -7,8 +7,8 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
 //Part of onlinedb deployment.
-const publicPath = path.join(__dirname, '../client/public');
-app.use(express.static(publicPath));
+// const publicPath = path.join(__dirname, '../public');
+// app.use(express.static(publicPath));
 let url = 'mongodb://dbuser:password1@ds241012.mlab.com:41012/stockdb'|| 'mongodb://localhost:27017';
 let port = process.env.PORT || 3000;
 
